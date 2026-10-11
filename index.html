@@ -47,7 +47,7 @@
                 </div>
                 <div>
                     <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-                        HOUSE TOOLS AUDITOR <span class="text-xs px-2.5 py-0.5 rounded-full bg-accent/20 text-accent border border-accent/30 font-semibold">AIR FRYER v2.0 LAB</span>
+                        HOUSE TOOLS AUDITOR <span class="text-xs px-2.5 py-0.5 rounded-full bg-accent/20 text-accent border border-accent/30 font-semibold">AIR FRYER v2.1 LAB</span>
                     </h1>
                     <p class="text-xs text-gray-400">Sistema Profesional de Auditoría Técnico-Metrológica, Térmica y Aerodinámica</p>
                 </div>
@@ -179,7 +179,7 @@
             <!-- 3. ANÁLISIS CONSTRUCTIVO, PESOS Y AERODINÁMICA -->
             <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
                 <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
-                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">03</span> Análisis Constructivo, Pesos y Aerodinámica (HW300PRO)</span>
+                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">03</span> Análisis Constructivo, Pesos y Aerodinámica (Micrómetro)</span>
                     <span id="veredictoConstructivo" class="text-xs px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 font-medium">Pendiente</span>
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -192,12 +192,12 @@
                         <input type="number" step="1" id="mat_peso_rejilla" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 190">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Pared Cubeta (HW300PRO) [mm / µm]</label>
-                        <input type="number" step="0.05" id="mat_espesor_chapa" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 0.8 o 35">
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Pared Cubeta (Micrómetro) [mm]</label>
+                        <input type="number" step="0.05" id="mat_espesor_chapa" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 0.8">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Chapa Rejilla (HW300PRO) [mm / µm]</label>
-                        <input type="number" step="0.05" id="mat_espesor_rejilla" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 0.5 o 25">
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Chapa Rejilla (Micrómetro) [mm]</label>
+                        <input type="number" step="0.05" id="mat_espesor_rejilla" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 0.5">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gray-400 mb-1">Aerodinámica del Fondo de Cubeta</label>
@@ -316,7 +316,7 @@
                 </div>
             </div>
 
-            <!-- 6. EVALUACIÓN DEL REVESTIMIENTO ANTIADHERENTE -->
+            <!-- 6. EVALUACIÓN DEL REVESTIMIENTO ANTIADHERENTE (HW300PRO) -->
             <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
                 <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
                     <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">06</span> Evaluación del Revestimiento Antiadherente (HW300PRO)</span>
@@ -324,15 +324,15 @@
                 </h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Paredes Cubeta (µm)</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Paredes Cubeta (HW300PRO) [µm]</label>
                         <input type="number" step="1" id="coat_paredes" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 32">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Fondo Cubeta (µm)</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Fondo Cubeta (HW300PRO) [µm]</label>
                         <input type="number" step="1" id="coat_fondo" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 45">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Rejilla / Salvamanteles (µm)</label>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Rejilla / (HW300PRO) [µm]</label>
                         <input type="number" step="1" id="coat_rejilla" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 28">
                     </div>
                     <div>
@@ -458,11 +458,11 @@
             let scoreConst = 5;
 
             if (espesorChapa > 0 || pesoCajon > 0) {
-                if (espesorChapa >= 0.8 || espesorChapa >= 35) {
+                if (espesorChapa >= 0.8) {
                     veredictoConstText = "Robusto / Alta Calidad";
                     veredictoConstColor = "bg-emerald-900/60 text-emerald-300 border border-emerald-700/50";
                     scoreConst = 10;
-                } else if (espesorChapa >= 0.5 || espesorChapa >= 25) {
+                } else if (espesorChapa >= 0.5) {
                     veredictoConstText = "Gama Media Estándar";
                     veredictoConstColor = "bg-amber-900/60 text-amber-300 border border-amber-700/50";
                     scoreConst = 7;
@@ -717,13 +717,13 @@
                 ["02. Metrología", "Volumen Real vs Anunciado (L)", `${data.geo_vol_real}L / ${data.geo_cap_anunciada}L (${data.geo_aprovechamiento})`, data.resGeo],
                 ["02. Metrología", "Volumen Útil 1ª Capa (4-6cm)", `${data.geo_primera_capa} L`, data.resGeo],
                 ["03. Constructivo", "Pesos (Cajón / Rejilla)", `${data.mat_peso_cajon}g / ${data.mat_peso_rejilla}g`, data.resConst],
-                ["03. Constructivo", "Espesor Chapa Cubeta / Rejilla", `${data.mat_espesor_chapa} mm / ${data.mat_espesor_rejilla} mm`, data.resConst],
+                ["03. Constructivo", "Espesor Chapa Cubeta / Rejilla (Micrómetro)", `${data.mat_espesor_chapa} mm / ${data.mat_espesor_rejilla} mm`, data.resConst],
                 ["03. Constructivo", "Aerodinámica Fondo / Rejilla", `${data.mat_fondo_aero} / ${data.mat_rejilla_diseno}`, data.resConst],
                 ["04. Ergonomía", "Térmica del Asa", data.ergo_asa, data.resErgo],
                 ["05. Térmicos", "Precalentamiento 180°C (s)", data.term_precal + "s", data.resTerm],
                 ["05. Térmicos", "Desviación Térmica (Δ°C)", data.term_desviacion + "°C", data.resTerm],
                 ["05. Térmicos", "Mapa Convección (C/N/S/E/O)", `${data.map_centro}/${data.map_norte}/${data.map_sur}/${data.map_este}/${data.map_oeste} °C`, data.resTerm],
-                ["06. Coating", "Espesor Paredes / Fondo (µm)", `${data.coat_paredes} µm / ${data.coat_fondo} µm`, data.resCoat],
+                ["06. Coating (HW300PRO)", "Espesor Paredes / Fondo (µm)", `${data.coat_paredes} µm / ${data.coat_fondo} µm`, data.resCoat],
                 ["07. Global", "NOTA FINAL PONDERADA", data.notaGlobal, "CALIFICACIÓN GLOBAL"],
                 [],
                 ["Observaciones Técnicas:", data.obs_tecnicas]
@@ -746,9 +746,9 @@ Configuración: ${data.config} | Calentamiento: ${data.calentamiento} | Humedad:
 - Vol. Real: ${data.geo_vol_real}L (Anunciado: ${data.geo_cap_anunciada}L) -> Aprovechamiento: ${data.geo_aprovechamiento}
 - Volumen 1ª Capa útil (4-6cm): ${data.geo_primera_capa}L -> (${data.resGeo})
 
-[03. CONSTRUCTIVO Y AERODINÁMICA]
+[03. CONSTRUCTIVO Y AERODINÁMICA (MICRÓMETRO)]
 - Peso Cajón (vacío): ${data.mat_peso_cajon}g | Peso Rejilla: ${data.mat_peso_rejilla}g
-- Espesor Cubeta: ${data.mat_espesor_chapa} | Espesor Rejilla: ${data.mat_espesor_rejilla}
+- Espesor Cubeta: ${data.mat_espesor_chapa} mm | Espesor Rejilla: ${data.mat_espesor_rejilla} mm
 - Fondo: ${data.mat_fondo_aero} | Rejilla: ${data.mat_rejilla_diseno} -> (${data.resConst})
 
 [04. ERGONOMÍA Y SEGURIDAD]
