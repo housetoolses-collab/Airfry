@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOUSE TOOLS AUDITOR-AIR FRYER</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#0b0f19',
+                        cardbg: '#111827',
+                        cardhover: '#1f2937',
+                        accent: '#3b82f6',
+                        accenthover: '#2563eb',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        danger: '#ef4444'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- SheetJS for Excel Export -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    </style>
+</head>
+<body class="bg-darkbg text-gray-100 min-h-screen p-3 sm:p-6">
+
+    <div class="max-w-6xl mx-auto space-y-6">
+        
+        <!-- Header -->
+        <header class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-2xl flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-accent/20 p-3 rounded-xl border border-accent/40 text-accent">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                        HOUSE TOOLS AUDITOR <span class="text-xs px-2.5 py-0.5 rounded-full bg-accent/20 text-accent border border-accent/30 font-semibold">AIR FRYER v2.0 LAB</span>
+                    </h1>
+                    <p class="text-xs text-gray-400">Sistema Profesional de Auditoría Técnico-Metrológica, Térmica y Aerodinámica</p>
+                </div>
+            </div>
+
+            <!-- Global Action Buttons -->
+            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
+                <button onclick="guardarAuditoriaActual()" class="flex-1 md:flex-none px-4 py-2 bg-accent hover:bg-accenthover text-white text-xs font-medium rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path></svg>
+                    Guardar Ficha
+                </button>
+                <button onclick="exportarExcel()" class="flex-1 md:flex-none px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    Exportar Excel
+                </button>
+                <button onclick="copiarInformeTexto()" class="flex-1 md:flex-none px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white text-xs font-medium rounded-xl transition flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    Copiar
+                </button>
+                <button onclick="window.print()" class="px-3 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-xl transition" title="Imprimir / PDF">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                </button>
+                <button onclick="reiniciarFicha()" class="px-3 py-2 bg-rose-900/40 hover:bg-rose-900 text-rose-300 rounded-xl transition border border-rose-800/50" title="Reiniciar">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <section class="bg-cardbg border border-gray-800 p-4 rounded-2xl shadow-xl">
+            <h2 class="text-sm font-semibold text-gray-300 mb-3 flex items-center justify-between">
+                <span>📂 Historial de Auditorías Almacenadas</span>
+                <span id="contadorHistorial" class="text-xs bg-gray-800 text-gray-400 px-2 py-0.5 rounded-full">0 guardadas</span>
+            </h2>
+            <div class="flex gap-2 overflow-x-auto pb-2" id="listaHistorial">
+                <p class="text-xs text-gray-500 italic py-2">No hay auditorías guardadas en este dispositivo.</p>
+            </div>
+        </section>
+
+        <!-- Main Form Container -->
+        <form id="formAuditoria" oninput="calcularTodo()" class="space-y-6">
+
+            <!-- 1. IDENTIFICACIÓN Y TECNOLOGÍA -->
+            <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
+                <h2 class="text-base font-semibold text-accent mb-4 flex items-center gap-2 border-b border-gray-800 pb-2">
+                    <span class="bg-accent/20 px-2 py-1 rounded text-xs">01</span> Identificación y Arquitectura Tecnológica
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Marca</label>
+                        <input type="text" id="id_marca" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: Cosori / Philips / Cecotec">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Modelo</label>
+                        <input type="text" id="id_modelo" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: Dual Blaze 6.4L">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Configuración del Aparato</label>
+                        <select id="id_config" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" onchange="toggleConditionalBlocks()">
+                            <option value="Cesta Única">Cesta Única (Cajón extraíble)</option>
+                            <option value="Doble Cesta">Doble Cesta (Cajones independientes)</option>
+                            <option value="Tipo Horno / Multifunción">Tipo Horno / Multifunción (Puerta abatible)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Tecnología de Calentamiento</label>
+                        <select id="id_calentamiento" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" onchange="toggleConditionalBlocks()">
+                            <option value="Resistencia Única + Ventilador">Resistencia Blindada Tradicional + Ventilador</option>
+                            <option value="Infrarrojos / Cuarzo / Halógeno">Infrarrojos / Cuarzo / Halógeno Directo</option>
+                            <option value="Sistema Híbrido">Sistema Híbrido (Resistencia + Infrarrojo)</option>
+                            <option value="Doble Resistencia (Superior e Inferior)">Doble Resistencia (Superior e Inferior)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Sistema de Gestión de Humedad / Vapor</label>
+                        <select id="id_humedad" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" onchange="toggleConditionalBlocks()">
+                            <option value="Sin Humedad (Aire Seco Estándar)">Sin Humedad (Aire Seco Estándar)</option>
+                            <option value="Goteo / Micro-pulverización">Goteo / Micro-pulverización Pasiva o Activa</option>
+                            <option value="Generador de Vapor Real">Generador de Vapor Real (Steam Air Fryer)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Tipo de Cubeta</label>
+                        <select id="id_tipocubeta" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="Metálica con Antiadherente">Metálica tradicional con antiadherente</option>
+                            <option value="Cristal Templado Transparente">Cristal templado transparente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Bloques condicionales dinámicos -->
+                <div id="blockOven" class="hidden mt-3 p-3 bg-darkbg border border-accent/30 rounded-xl text-xs text-accent">
+                    <strong>Parámetro de Horno:</strong> Verifique estanqueidad perimetral de la puerta abatible y aislamiento de doble cristal.
+                </div>
+                <div id="blockInfrared" class="hidden mt-3 p-3 bg-darkbg border border-accent/30 rounded-xl text-xs text-accent">
+                    <strong>Parámetro Infrarrojos:</strong> Verifique velocidad de encendido térmico instantáneo y ausencia de deslumbramiento excesivo.
+                </div>
+                <div id="blockSteam" class="hidden mt-3 p-3 bg-darkbg border border-accent/30 rounded-xl text-xs text-accent">
+                    <strong>Parámetro Vapor:</strong> Verifique capacidad del depósito de agua externo y ausencia de condensaciones en la electrónica.
+                </div>
+            </div>
+
+            <!-- 2. METROLOGÍA Y GEOMETRÍA -->
+            <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
+                <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
+                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">02</span> Metrología y Capacidad Útil (Pruebas con Agua)</span>
+                    <span id="veredictoGeo" class="text-xs px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 font-medium">Pendiente de cálculo</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Capacidad Teórica Anunciada (L)</label>
+                        <input type="number" step="0.1" id="geo_cap_anunciada" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 6.0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Volumen Total Real con Agua (L - Borde)</label>
+                        <input type="number" step="0.1" id="geo_vol_real" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 5.5">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Volumen Útil 1ª Capa (4-6 cm con Rejilla)</label>
+                        <input type="number" step="0.1" id="geo_primera_capa" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 2.8 (Litros a granel)">
+                        <span class="text-[10px] text-gray-500 mt-0.5 block">Medido con agua hasta límite seguro para patatas/alitas.</span>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">% Aprovechamiento Total Real</label>
+                        <input type="text" id="geo_aprovechamiento" readonly class="w-full bg-darkbg/50 border border-gray-800 rounded-xl px-3 py-2 text-sm text-emerald-400 font-semibold outline-none" value="--">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. ANÁLISIS CONSTRUCTIVO, PESOS Y AERODINÁMICA -->
+            <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
+                <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
+                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">03</span> Análisis Constructivo, Pesos y Aerodinámica (HW300PRO)</span>
+                    <span id="veredictoConstructivo" class="text-xs px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 font-medium">Pendiente</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Peso del Cajón Vacío (sin rejilla) [g]</label>
+                        <input type="number" step="1" id="mat_peso_cajon" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 460">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Peso de la Rejilla / Salvamanteles [g]</label>
+                        <input type="number" step="1" id="mat_peso_rejilla" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 190">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Pared Cubeta (HW300PRO) [mm / µm]</label>
+                        <input type="number" step="0.05" id="mat_espesor_chapa" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 0.8 o 35">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Chapa Rejilla (HW300PRO) [mm / µm]</label>
+                        <input type="number" step="0.05" id="mat_espesor_rejilla" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 0.5 o 25">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Aerodinámica del Fondo de Cubeta</label>
+                        <select id="mat_fondo_aero" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="Plana / Estándar">Plana / Estándar (Sin deflectores)</option>
+                            <option value="Protuberancia / Cono Central">Protuberancia / Cono Central Direccional</option>
+                            <option value="Fondo en Estrella (Philips)">Fondo en Estrella / Perfilado Alta Convección</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Diseño Geométrico de la Rejilla</label>
+                        <select id="mat_rejilla_diseno" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="Malla de varillas clásica">Malla de varillas metálicas clásica</option>
+                            <option value="Placa troquelada perforada">Placa troquelada perforada plana</option>
+                            <option value="Aerodinámica con lamas">Diseño aerodinámico avanzado con lamas</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ERGONOMÍA Y SEGURIDAD -->
+            <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
+                <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
+                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">04</span> Ergonomía, Seguridad y Cierre</span>
+                    <span id="veredictoErgo" class="text-xs px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 font-medium">Pendiente</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Sistema de Extracción de Cesta</label>
+                        <select id="ergo_sistema" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="Botón con pestaña de seguridad">Botón con pestaña de protección</option>
+                            <option value="Extracción directa por presión">Extracción directa a presión</option>
+                            <option value="Puerta abatible con tirador térmico">Puerta abatible con tirador frontal</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Acoplamiento de Rejilla / Bandeja</label>
+                        <select id="ergo_acople" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="Estable y sin atascos">Estable y sin atascos en frío</option>
+                            <option value="Requiere fuerza excesiva">Requiere fuerza excesiva / Topes rígidos</option>
+                            <option value="Holgada / Tiende a vibrar">Holgada / Tiende a vibrar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Térmica del Asa / Mango (Tras ciclo)</label>
+                        <select id="ergo_asa" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="Frío / Seguro (<40°C)">Frío / Aislado con seguridad (<40°C)</option>
+                            <option value="Templado (40°C - 55°C)">Templado (40°C - 55°C)</option>
+                            <option value="Caliente / Riesgo de quemadura (>55°C)">Caliente / Riesgo de quemadura (>55°C)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. ENSAYOS TÉRMICOS Y CONVECCIÓN -->
+            <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
+                <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
+                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">05</span> Ensayos Térmicos, Convección y Seguridad</span>
+                    <span id="veredictoTermico" class="text-xs px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 font-medium">Pendiente</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Tiempo de Precalentamiento a 180°C (s)</label>
+                        <input type="number" step="1" id="term_precal" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 180 (segundos)">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Desviación de Temperatura real (Δ °C)</label>
+                        <input type="number" step="0.5" id="term_desviacion" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: +5 o -10">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Temp. Ventilador / Escape Trasero (°C)</label>
+                        <input type="number" step="0.5" id="term_escape" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 68.5">
+                    </div>
+                </div>
+
+                <!-- Mapa Térmico de Convección (5 Puntos) -->
+                <div class="bg-darkbg/60 border border-gray-800/80 p-4 rounded-xl mb-4">
+                    <h3 class="text-xs font-semibold text-gray-300 mb-3 uppercase tracking-wider">Mapa Térmico de Convección (Rejilla sin alimentos a 180°C)</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                        <div>
+                            <label class="block text-[11px] text-gray-400 mb-1">Centro (°C)</label>
+                            <input type="number" step="0.5" id="map_centro" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="180">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-400 mb-1">Norte - Superior (°C)</label>
+                            <input type="number" step="0.5" id="map_norte" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="175">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-400 mb-1">Sur - Inferior (°C)</label>
+                            <input type="number" step="0.5" id="map_sur" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="172">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-400 mb-1">Este - Derecho (°C)</label>
+                            <input type="number" step="0.5" id="map_este" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="178">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] text-gray-400 mb-1">Oeste - Izquierdo (°C)</label>
+                            <input type="number" step="0.5" id="map_oeste" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="176">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Inercia térmica a los 3 min de apagar (°C)</label>
+                        <input type="number" step="0.5" id="term_inercia" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 110">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Prueba Estanqueidad al Vapor (Display)</label>
+                        <select id="term_estanqueidad" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="Sin condensación">Sin condensación (Excelente estanqueidad)</option>
+                            <option value="Vaho leve transitorio">Vaho leve transitorio (Aceptable)</option>
+                            <option value="Filtración crítica de agua">Filtración crítica de agua en display (Defecto)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. EVALUACIÓN DEL REVESTIMIENTO ANTIADHERENTE -->
+            <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
+                <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
+                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">06</span> Evaluación del Revestimiento Antiadherente (HW300PRO)</span>
+                    <span id="veredictoCoating" class="text-xs px-2.5 py-1 rounded-lg bg-gray-800 text-gray-300 font-medium">Pendiente</span>
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Paredes Cubeta (µm)</label>
+                        <input type="number" step="1" id="coat_paredes" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 32">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Fondo Cubeta (µm)</label>
+                        <input type="number" step="1" id="coat_fondo" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 45">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Espesor Rejilla / Salvamanteles (µm)</label>
+                        <input type="number" step="1" id="coat_rejilla" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none" placeholder="Ej: 28">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Tipo de Antiadherente</label>
+                        <select id="coat_tipo" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none">
+                            <option value="PTFE Multicapa Estándar">PTFE Multicapa Estándar</option>
+                            <option value="Cerámico Sol-Gel">Cerámico Sol-Gel Reforzado</option>
+                            <option value="Polímero Reforzado Alta Gama">Polímero Reforzado Alta Gama</option>
+                            <option value="Cristal / Sin Coating">Cristal (Sin Coating)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. OBSERVACIONES Y NOTA GLOBAL -->
+            <div class="bg-cardbg border border-gray-800 p-5 rounded-2xl shadow-xl">
+                <h2 class="text-base font-semibold text-accent mb-4 flex items-center justify-between border-b border-gray-800 pb-2">
+                    <span class="flex items-center gap-2"><span class="bg-accent/20 px-2 py-1 rounded text-xs">07</span> Observaciones Técnicas y Nota Final Ponderada</span>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-400">Calificación Global:</span>
+                        <span id="badgeNotaGlobal" class="text-sm font-bold px-3 py-1 rounded-xl bg-gray-800 text-white">-- / 10</span>
+                    </div>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+                    <!-- Resumen por Secciones -->
+                    <div class="md:col-span-2 space-y-3">
+                        <label class="block text-xs font-medium text-gray-400">Resumen Automático por Bloques</label>
+                        <div class="bg-darkbg border border-gray-800 rounded-xl p-3 space-y-2 text-xs" id="panelResumenBloques">
+                            <div class="flex justify-between items-center py-1 border-b border-gray-800/50">
+                                <span class="text-gray-400">Metrología y Geometría:</span>
+                                <span id="resGeo" class="font-semibold text-gray-300">Pendiente</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-gray-800/50">
+                                <span class="text-gray-400">Análisis Constructivo y Pesos:</span>
+                                <span id="resConst" class="font-semibold text-gray-300">Pendiente</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-gray-800/50">
+                                <span class="text-gray-400">Ergonomía y Cierre:</span>
+                                <span id="resErgo" class="font-semibold text-gray-300">Pendiente</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1 border-b border-gray-800/50">
+                                <span class="text-gray-400">Ensayos Térmicos y Convección:</span>
+                                <span id="resTerm" class="font-semibold text-gray-300">Pendiente</span>
+                            </div>
+                            <div class="flex justify-between items-center py-1">
+                                <span class="text-gray-400">Revestimiento Antiadherente:</span>
+                                <span id="resCoat" class="font-semibold text-gray-300">Pendiente</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Observaciones Libres -->
+                    <div>
+                        <label class="block text-xs font-medium text-gray-400 mb-1">Observaciones Técnicas / Defectos</label>
+                        <textarea id="obs_tecnicas" rows="5" class="w-full bg-darkbg border border-gray-800 rounded-xl px-3 py-2 text-sm text-white focus:border-accent outline-none resize-none" placeholder="Añadir notas sobre holguras, acabados, comportamiento del termostato o detalles de fabricación..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script>
+        // Inicialización al cargar la ventana
+        window.onload = function() {
+            cargarHistorialLista();
+            toggleConditionalBlocks();
+            calcularTodo();
+        }
+
+        // Lógica condicional inteligente para mostrar/ocultar bloques según selección
+        function toggleConditionalBlocks() {
+            const config = document.getElementById('id_config').value;
+            const calentamiento = document.getElementById('id_calentamiento').value;
+            const humedad = document.getElementById('id_humedad').value;
+
+            document.getElementById('blockOven').style.display = (config.includes('Horno')) ? 'block' : 'none';
+            document.getElementById('blockInfrared').style.display = (calentamiento.includes('Infrarrojos') || calentamiento.includes('Híbrido')) ? 'block' : 'none';
+            document.getElementById('blockSteam').style.display = (humedad.includes('Vapor') || humedad.includes('Goteo')) ? 'block' : 'none';
+        }
+
+        // Función central de cálculos y veredictos en tiempo real
+        function calcularTodo() {
+            // 1. Geometría y Volumen
+            const capAnunciada = parseFloat(document.getElementById('geo_cap_anunciada').value) || 0;
+            const volReal = parseFloat(document.getElementById('geo_vol_real').value) || 0;
+            let aprovechamiento = 0;
+            let veredictoGeoText = "Pendiente";
+            let veredictoGeoColor = "bg-gray-800 text-gray-300";
+            let scoreGeo = 5;
+
+            if (capAnunciada > 0 && volReal > 0) {
+                aprovechamiento = (volReal / capAnunciada) * 100;
+                document.getElementById('geo_aprovechamiento').value = aprovechamiento.toFixed(1) + "%";
+                
+                if (aprovechamiento >= 90) {
+                    veredictoGeoText = "Excelente (>90% real)";
+                    veredictoGeoColor = "bg-emerald-900/60 text-emerald-300 border border-emerald-700/50";
+                    scoreGeo = 10;
+                } else if (aprovechamiento >= 75) {
+                    veredictoGeoText = "Aceptable (75-89%)";
+                    veredictoGeoColor = "bg-amber-900/60 text-amber-300 border border-amber-700/50";
+                    scoreGeo = 7;
+                } else {
+                    veredictoGeoText = "Bajo (<75% real / Engañoso)";
+                    veredictoGeoColor = "bg-rose-900/60 text-rose-300 border border-rose-800/50";
+                    scoreGeo = 4;
+                }
+            } else {
+                document.getElementById('geo_aprovechamiento').value = "--";
+            }
+            document.getElementById('veredictoGeo').className = `text-xs px-2.5 py-1 rounded-lg font-medium ${veredictoGeoColor}`;
+            document.getElementById('veredictoGeo').innerText = veredictoGeoText;
+            document.getElementById('resGeo').innerText = veredictoGeoText;
+
+            // 2. Constructivo, Pesos y Aerodinámica
+            const espesorChapa = parseFloat(document.getElementById('mat_espesor_chapa').value) || 0;
+            const pesoCajon = parseFloat(document.getElementById('mat_peso_cajon').value) || 0;
+            let veredictoConstText = "Pendiente";
+            let veredictoConstColor = "bg-gray-800 text-gray-300";
+            let scoreConst = 5;
+
+            if (espesorChapa > 0 || pesoCajon > 0) {
+                if (espesorChapa >= 0.8 || espesorChapa >= 35) {
+                    veredictoConstText = "Robusto / Alta Calidad";
+                    veredictoConstColor = "bg-emerald-900/60 text-emerald-300 border border-emerald-700/50";
+                    scoreConst = 10;
+                } else if (espesorChapa >= 0.5 || espesorChapa >= 25) {
+                    veredictoConstText = "Gama Media Estándar";
+                    veredictoConstColor = "bg-amber-900/60 text-amber-300 border border-amber-700/50";
+                    scoreConst = 7;
+                } else {
+                    veredictoConstText = "Chapa Fina / Estructura Débil";
+                    veredictoConstColor = "bg-rose-900/60 text-rose-300 border border-rose-800/50";
+                    scoreConst = 4;
+                }
+            }
+            document.getElementById('veredictoConstructivo').className = `text-xs px-2.5 py-1 rounded-lg font-medium ${veredictoConstColor}`;
+            document.getElementById('veredictoConstructivo').innerText = veredictoConstText;
+            document.getElementById('resConst').innerText = veredictoConstText;
+
+            // 3. Ergonomía y Seguridad
+            const asa = document.getElementById('ergo_asa').value;
+            let veredictoErgoText = "Pendiente";
+            let veredictoErgoColor = "bg-gray-800 text-gray-300";
+            let scoreErgo = 7;
+
+            if (asa.includes("Frío")) {
+                veredictoErgoText = "Excelente Aislamiento Térmico";
+                veredictoErgoColor = "bg-emerald-900/60 text-emerald-300 border border-emerald-700/50";
+                scoreErgo = 10;
+            } else if (asa.includes("Templado")) {
+                veredictoErgoText = "Aceptable / Conforme";
+                veredictoErgoColor = "bg-amber-900/60 text-amber-300 border border-amber-700/50";
+                scoreErgo = 7;
+            } else if (asa.includes("Caliente")) {
+                veredictoErgoText = "Peligroso (Riesgo Quemadura)";
+                veredictoErgoColor = "bg-rose-900/60 text-rose-300 border border-rose-800/50";
+                scoreErgo = 3;
+            }
+            document.getElementById('veredictoErgo').className = `text-xs px-2.5 py-1 rounded-lg font-medium ${veredictoErgoColor}`;
+            document.getElementById('veredictoErgo').innerText = veredictoErgoText;
+            document.getElementById('resErgo').innerText = veredictoErgoText;
+
+            // 4. Ensayos Térmicos y Convección
+            const desviacion = parseFloat(document.getElementById('term_desviacion').value);
+            const estanqueidad = document.getElementById('term_estanqueidad').value;
+            let veredictoTermText = "Pendiente";
+            let veredictoTermColor = "bg-gray-800 text-gray-300";
+            let scoreTerm = 7;
+
+            if (!isNaN(desviacion)) {
+                if (Math.abs(desviacion) <= 5 && estanqueidad.includes("Sin condensación")) {
+                    veredictoTermText = "Alta Precisión / Estanco";
+                    veredictoTermColor = "bg-emerald-900/60 text-emerald-300 border border-emerald-700/50";
+                    scoreTerm = 10;
+                } else if (Math.abs(desviacion) <= 12 && !estanqueidad.includes("Filtración")) {
+                    veredictoTermText = "Desviación Moderada / Aceptable";
+                    veredictoTermColor = "bg-amber-900/60 text-amber-300 border border-amber-700/50";
+                    scoreTerm = 7;
+                } else {
+                    veredictoTermText = "Desviación Crítica o Filtración";
+                    veredictoTermColor = "bg-rose-900/60 text-rose-300 border border-rose-800/50";
+                    scoreTerm = 3;
+                }
+            }
+            document.getElementById('veredictoTermico').className = `text-xs px-2.5 py-1 rounded-lg font-medium ${veredictoTermColor}`;
+            document.getElementById('veredictoTermico').innerText = veredictoTermText;
+            document.getElementById('resTerm').innerText = veredictoTermText;
+
+            // 5. Revestimiento Antiadherente (HW300PRO)
+            const coatParedes = parseFloat(document.getElementById('coat_paredes').value) || 0;
+            const tipoCubeta = document.getElementById('id_tipocubeta').value;
+            let veredictoCoatText = "Pendiente";
+            let veredictoCoatColor = "bg-gray-800 text-gray-300";
+            let scoreCoat = 6;
+
+            if (tipoCubeta.includes("Cristal")) {
+                veredictoCoatText = "No Aplica (Cubeta de Cristal)";
+                veredictoCoatColor = "bg-blue-900/60 text-blue-300 border border-blue-700/50";
+                scoreCoat = 10;
+            } else if (coatParedes > 0) {
+                if (coatParedes >= 40) {
+                    veredictoCoatText = "Reforzado / Gama Alta (>40 µm)";
+                    veredictoCoatColor = "bg-emerald-900/60 text-emerald-300 border border-emerald-700/50";
+                    scoreCoat = 10;
+                } else if (coatParedes >= 25) {
+                    veredictoCoatText = "Gama Media Estándar (25-39 µm)";
+                    veredictoCoatColor = "bg-amber-900/60 text-amber-300 border border-amber-700/50";
+                    scoreCoat = 7;
+                } else {
+                    veredictoCoatText = "Coating Bajo / Desgaste Rápido (<25 µm)";
+                    veredictoCoatColor = "bg-rose-900/60 text-rose-300 border border-rose-800/50";
+                    scoreCoat = 4;
+                }
+            }
+            document.getElementById('veredictoCoating').className = `text-xs px-2.5 py-1 rounded-lg font-medium ${veredictoCoatColor}`;
+            document.getElementById('veredictoCoating').innerText = veredictoCoatText;
+            document.getElementById('resCoat').innerText = veredictoCoatText;
+
+            // Nota Global Ponderada (sobre 10)
+            const notaGlobal = ((scoreGeo * 0.2) + (scoreConst * 0.2) + (scoreErgo * 0.15) + (scoreTerm * 0.25) + (scoreCoat * 0.2)).toFixed(1);
+            const badgeNota = document.getElementById('badgeNotaGlobal');
+            badgeNota.innerText = notaGlobal + " / 10";
+
+            if (notaGlobal >= 8.5) {
+                badgeNota.className = "text-sm font-bold px-3 py-1 rounded-xl bg-emerald-900/80 text-emerald-300 border border-emerald-700";
+            } else if (notaGlobal >= 6.0) {
+                badgeNota.className = "text-sm font-bold px-3 py-1 rounded-xl bg-amber-900/80 text-amber-300 border border-amber-700";
+            } else {
+                badgeNota.className = "text-sm font-bold px-3 py-1 rounded-xl bg-rose-900/80 text-rose-300 border border-rose-700";
+            }
+        }
+
+        // Obtener datos del formulario en objeto
+        function obtenerDatosFormulario() {
+            return {
+                id: 'aud_' + Date.now(),
+                fecha: new Date().toLocaleDateString(),
+                marca: document.getElementById('id_marca').value || 'Sin Marca',
+                modelo: document.getElementById('id_modelo').value || 'Sin Modelo',
+                config: document.getElementById('id_config').value,
+                calentamiento: document.getElementById('id_calentamiento').value,
+                humedad: document.getElementById('id_humedad').value,
+                tipoCubeta: document.getElementById('id_tipocubeta').value,
+                geo_cap_anunciada: document.getElementById('geo_cap_anunciada').value,
+                geo_vol_real: document.getElementById('geo_vol_real').value,
+                geo_primera_capa: document.getElementById('geo_primera_capa').value,
+                geo_aprovechamiento: document.getElementById('geo_aprovechamiento').value,
+                mat_peso_cajon: document.getElementById('mat_peso_cajon').value,
+                mat_peso_rejilla: document.getElementById('mat_peso_rejilla').value,
+                mat_espesor_chapa: document.getElementById('mat_espesor_chapa').value,
+                mat_espesor_rejilla: document.getElementById('mat_espesor_rejilla').value,
+                mat_fondo_aero: document.getElementById('mat_fondo_aero').value,
+                mat_rejilla_diseno: document.getElementById('mat_rejilla_diseno').value,
+                ergo_sistema: document.getElementById('ergo_sistema').value,
+                ergo_acople: document.getElementById('ergo_acople').value,
+                ergo_asa: document.getElementById('ergo_asa').value,
+                term_precal: document.getElementById('term_precal').value,
+                term_desviacion: document.getElementById('term_desviacion').value,
+                term_escape: document.getElementById('term_escape').value,
+                map_centro: document.getElementById('map_centro').value,
+                map_norte: document.getElementById('map_norte').value,
+                map_sur: document.getElementById('map_sur').value,
+                map_este: document.getElementById('map_este').value,
+                map_oeste: document.getElementById('map_oeste').value,
+                term_inercia: document.getElementById('term_inercia').value,
+                term_estanqueidad: document.getElementById('term_estanqueidad').value,
+                coat_paredes: document.getElementById('coat_paredes').value,
+                coat_fondo: document.getElementById('coat_fondo').value,
+                coat_rejilla: document.getElementById('coat_rejilla').value,
+                coat_tipo: document.getElementById('coat_tipo').value,
+                obs_tecnicas: document.getElementById('obs_tecnicas').value,
+                resGeo: document.getElementById('resGeo').innerText,
+                resConst: document.getElementById('resConst').innerText,
+                resErgo: document.getElementById('resErgo').innerText,
+                resTerm: document.getElementById('resTerm').innerText,
+                resCoat: document.getElementById('resCoat').innerText,
+                notaGlobal: document.getElementById('badgeNotaGlobal').innerText
+            };
+        }
+
+        // Guardar en localStorage
+        function guardarAuditoriaActual() {
+            const data = obtenerDatosFormulario();
+            let historial = JSON.parse(localStorage.getItem('house_tools_auditor_air') || '[]');
+            historial.unshift(data);
+            if (historial.length > 10) historial.pop();
+            localStorage.setItem('house_tools_auditor_air', JSON.stringify(historial));
+            cargarHistorialLista();
+            alertPersonalizado("Ficha de auditoría guardada correctamente en el historial.");
+        }
+
+        // Cargar lista de historial
+        function cargarHistorialLista() {
+            const historial = JSON.parse(localStorage.getItem('house_tools_auditor_air') || '[]');
+            const contenedor = document.getElementById('listaHistorial');
+            document.getElementById('contadorHistorial').innerText = historial.length + " guardadas";
+
+            if (historial.length === 0) {
+                contenedor.innerHTML = `<p class="text-xs text-gray-500 italic py-2">No hay auditorías guardadas en este dispositivo.</p>`;
+                return;
+            }
+
+            let html = '';
+            historial.forEach((item, index) => {
+                html += `
+                    <div class="flex-shrink-0 bg-darkbg border border-gray-800 hover:border-accent p-3 rounded-xl cursor-pointer transition w-60" onclick="cargarAuditoriaIndex(${index})">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-xs font-bold text-white truncate max-w-[130px]">${item.marca} ${item.modelo}</span>
+                            <span class="text-[10px] text-accent font-semibold">${item.notaGlobal}</span>
+                        </div>
+                        <p class="text-[10px] text-gray-400 truncate">Config: ${item.config}</p>
+                        <p class="text-[9px] text-gray-500 mt-1">${item.fecha}</p>
+                    </div>
+                `;
+            });
+            contenedor.innerHTML = html;
+        }
+
+        // Cargar auditoría específica desde el historial
+        function cargarAuditoriaIndex(index) {
+            const historial = JSON.parse(localStorage.getItem('house_tools_auditor_air') || '[]');
+            const item = historial[index];
+            if (!item) return;
+
+            document.getElementById('id_marca').value = item.marca;
+            document.getElementById('id_modelo').value = item.modelo;
+            document.getElementById('id_config').value = item.config;
+            document.getElementById('id_calentamiento').value = item.calentamiento;
+            document.getElementById('id_humedad').value = item.humedad;
+            document.getElementById('id_tipocubeta').value = item.tipoCubeta;
+            document.getElementById('geo_cap_anunciada').value = item.geo_cap_anunciada;
+            document.getElementById('geo_vol_real').value = item.geo_vol_real;
+            document.getElementById('geo_primera_capa').value = item.geo_primera_capa;
+            document.getElementById('mat_peso_cajon').value = item.mat_peso_cajon;
+            document.getElementById('mat_peso_rejilla').value = item.mat_peso_rejilla;
+            document.getElementById('mat_espesor_chapa').value = item.mat_espesor_chapa;
+            document.getElementById('mat_espesor_rejilla').value = item.mat_espesor_rejilla;
+            document.getElementById('mat_fondo_aero').value = item.mat_fondo_aero;
+            document.getElementById('mat_rejilla_diseno').value = item.mat_rejilla_diseno;
+            document.getElementById('ergo_sistema').value = item.ergo_sistema;
+            document.getElementById('ergo_acople').value = item.ergo_acople;
+            document.getElementById('ergo_asa').value = item.ergo_asa;
+            document.getElementById('term_precal').value = item.term_precal;
+            document.getElementById('term_desviacion').value = item.term_desviacion;
+            document.getElementById('term_escape').value = item.term_escape;
+            document.getElementById('map_centro').value = item.map_centro;
+            document.getElementById('map_norte').value = item.map_norte;
+            document.getElementById('map_sur').value = item.map_sur;
+            document.getElementById('map_este').value = item.map_este;
+            document.getElementById('map_oeste').value = item.map_oeste;
+            document.getElementById('term_inercia').value = item.term_inercia;
+            document.getElementById('term_estanqueidad').value = item.term_estanqueidad;
+            document.getElementById('coat_paredes').value = item.coat_paredes;
+            document.getElementById('coat_fondo').value = item.coat_fondo;
+            document.getElementById('coat_rejilla').value = item.coat_rejilla;
+            document.getElementById('coat_tipo').value = item.coat_tipo;
+            document.getElementById('obs_tecnicas').value = item.obs_tecnicas;
+
+            toggleConditionalBlocks();
+            calcularTodo();
+            alertPersonalizado("Auditoría cargada correctamente.");
+        }
+
+        // Exportar a Excel con SheetJS
+        function exportarExcel() {
+            const data = obtenerDatosFormulario();
+            const wsData = [
+                ["HOUSE TOOLS AUDITOR - AIR FRYER - INFORME TÉCNICO"],
+                ["Fecha de Auditoría", data.fecha],
+                ["Marca", data.marca],
+                ["Modelo", data.modelo],
+                ["Configuración", data.config],
+                ["Calentamiento", data.calentamiento],
+                ["Sistema Humedad", data.humedad],
+                ["Tipo de Cubeta", data.tipoCubeta],
+                [],
+                ["BLOQUE", "PARÁMETRO TÉCNICO", "VALOR MEDIDO", "VEREDICTO"],
+                ["02. Metrología", "Volumen Real vs Anunciado (L)", `${data.geo_vol_real}L / ${data.geo_cap_anunciada}L (${data.geo_aprovechamiento})`, data.resGeo],
+                ["02. Metrología", "Volumen Útil 1ª Capa (4-6cm)", `${data.geo_primera_capa} L`, data.resGeo],
+                ["03. Constructivo", "Pesos (Cajón / Rejilla)", `${data.mat_peso_cajon}g / ${data.mat_peso_rejilla}g`, data.resConst],
+                ["03. Constructivo", "Espesor Chapa Cubeta / Rejilla", `${data.mat_espesor_chapa} mm / ${data.mat_espesor_rejilla} mm`, data.resConst],
+                ["03. Constructivo", "Aerodinámica Fondo / Rejilla", `${data.mat_fondo_aero} / ${data.mat_rejilla_diseno}`, data.resConst],
+                ["04. Ergonomía", "Térmica del Asa", data.ergo_asa, data.resErgo],
+                ["05. Térmicos", "Precalentamiento 180°C (s)", data.term_precal + "s", data.resTerm],
+                ["05. Térmicos", "Desviación Térmica (Δ°C)", data.term_desviacion + "°C", data.resTerm],
+                ["05. Térmicos", "Mapa Convección (C/N/S/E/O)", `${data.map_centro}/${data.map_norte}/${data.map_sur}/${data.map_este}/${data.map_oeste} °C`, data.resTerm],
+                ["06. Coating", "Espesor Paredes / Fondo (µm)", `${data.coat_paredes} µm / ${data.coat_fondo} µm`, data.resCoat],
+                ["07. Global", "NOTA FINAL PONDERADA", data.notaGlobal, "CALIFICACIÓN GLOBAL"],
+                [],
+                ["Observaciones Técnicas:", data.obs_tecnicas]
+            ];
+
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Auditoria Air Fryer");
+            XLSX.writeFile(wb, `Auditoria_AirFryer_${data.marca}_${data.modelo}.xlsx`.replace(/\s+/g, '_'));
+        }
+
+        // Copiar informe en texto plano
+        function copiarInformeTexto() {
+            const data = obtenerDatosFormulario();
+            const texto = `=== HOUSE TOOLS AUDITOR - AIR FRYER ===
+Ficha: ${data.marca} ${data.modelo} (${data.fecha})
+Configuración: ${data.config} | Calentamiento: ${data.calentamiento} | Humedad: ${data.humedad}
+
+[02. METROLOGÍA Y GEOMETRÍA]
+- Vol. Real: ${data.geo_vol_real}L (Anunciado: ${data.geo_cap_anunciada}L) -> Aprovechamiento: ${data.geo_aprovechamiento}
+- Volumen 1ª Capa útil (4-6cm): ${data.geo_primera_capa}L -> (${data.resGeo})
+
+[03. CONSTRUCTIVO Y AERODINÁMICA]
+- Peso Cajón (vacío): ${data.mat_peso_cajon}g | Peso Rejilla: ${data.mat_peso_rejilla}g
+- Espesor Cubeta: ${data.mat_espesor_chapa} | Espesor Rejilla: ${data.mat_espesor_rejilla}
+- Fondo: ${data.mat_fondo_aero} | Rejilla: ${data.mat_rejilla_diseno} -> (${data.resConst})
+
+[04. ERGONOMÍA Y SEGURIDAD]
+- Térmica del Asa: ${data.ergo_asa} -> (${data.resErgo})
+
+[05. ENSAYOS TÉRMICOS Y CONVECCIÓN]
+- Precalentamiento: ${data.term_precal}s | Desviación: ${data.term_desviacion}°C | Escape: ${data.term_escape}°C
+- Mapa Convección (C/N/S/E/O): ${data.map_centro}/${data.map_norte}/${data.map_sur}/${data.map_este}/${data.map_oeste} °C
+- Estanqueidad Display: ${data.term_estanqueidad} -> (${data.resTerm})
+
+[06. REVESTIMIENTO ANTIADHERENTE HW300PRO]
+- Paredes: ${data.coat_paredes} µm | Fondo: ${data.coat_fondo} µm | Rejilla: ${data.coat_rejilla} µm (${data.resCoat})
+
+[07. NOTA FINAL Y OBSERVACIONES]
+- NOTA PONDERADA GLOBAL: ${data.notaGlobal}
+- Observaciones: ${data.obs_tecnicas}
+=========================================`;
+
+            const textarea = document.createElement('textarea');
+            textarea.value = texto;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alertPersonalizado("Informe copiado al portapapeles en formato texto.");
+        }
+
+        // Reiniciar formulario
+        function reiniciarFicha() {
+            if (confirm("¿Estás seguro de limpiar todos los campos de la ficha actual?")) {
+                document.getElementById('formAuditoria').reset();
+                toggleConditionalBlocks();
+                calcularTodo();
+            }
+        }
+
+        // Alerta personalizada
+        function alertPersonalizado(msg) {
+            const div = document.createElement('div');
+            div.className = 'fixed bottom-5 right-5 z-50 bg-accent text-white px-4 py-3 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2 animate-bounce';
+            div.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> ${msg}`;
+            document.body.appendChild(div);
+            setTimeout(() => div.remove(), 3500);
+        }
+    </script>
+</body>
+</html>
