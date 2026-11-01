@@ -33,7 +33,6 @@
     <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Custom scrollbar for technical dark theme */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -89,7 +88,7 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="font-bold text-lg leading-none tracking-tight text-white">HOUSE TOOLS AUDITOR</h1>
-                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.2 LAB</span>
+                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.2.1 LAB</span>
                     </div>
                     <p class="text-xs text-slate-400 mt-1 hidden sm:block">Sistema Profesional de Auditoría Técnico-Metrológica, Térmica y Aerodinámica</p>
                 </div>
@@ -322,17 +321,24 @@
                         </div>
                     </div>
 
-                    <!-- Visual Progress Bar Stack -->
+                    <!-- Visual Progress Bar Stack with Legend -->
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-                        <div class="flex justify-between items-center text-xs">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs gap-1">
                             <span class="font-medium text-slate-300">Distribución de Aprovechamiento Volumétrico Real (Neto s/ Rejilla)</span>
                             <span class="font-mono text-brand-400" id="vol-efficiency-ratio">Eficiencia Monocapa (A4/Teórico): 0%</span>
                         </div>
                         <div class="w-full h-4 bg-slate-900 rounded-full overflow-hidden flex p-0.5 border border-slate-800">
-                            <div id="bar-a3" class="bg-blue-500 h-full rounded-l-full transition-all duration-300" style="width: 0%"></div>
-                            <div id="bar-a4" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%"></div>
-                            <div id="bar-a6" class="bg-amber-500 h-full transition-all duration-300" style="width: 0%"></div>
-                            <div id="bar-max" class="bg-brand-600 h-full rounded-r-full transition-all duration-300" style="width: 0%"></div>
+                            <div id="bar-a3" class="bg-blue-500 h-full rounded-l-full transition-all duration-300" style="width: 0%" title="A3 (3 cm)"></div>
+                            <div id="bar-a4" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%" title="A4 (4 cm)"></div>
+                            <div id="bar-a6" class="bg-amber-500 h-full transition-all duration-300" style="width: 0%" title="A6 (6 cm)"></div>
+                            <div id="bar-max" class="bg-brand-600 h-full rounded-r-full transition-all duration-300" style="width: 0%" title="Línea MÁXIMO"></div>
+                        </div>
+                        <!-- Color Dots Legend restored -->
+                        <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 px-1 font-mono">
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-blue-500 inline-block"></span> A3</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> A4</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> A6</span>
+                            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-brand-600 inline-block"></span> MÁXIMO</span>
                         </div>
                     </div>
                 </div>
@@ -694,7 +700,7 @@
     <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>HOUSE TOOLS AUDITOR &copy; 2026 - Laboratorio de Metrología y Ensayos de Eficiencia</p>
-            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.2 LAB</p>
+            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.2.1 LAB</p>
         </div>
     </footer>
 
@@ -941,12 +947,12 @@
             const weight = document.getElementById('weight_total').value || '0';
             const score = document.getElementById('score-display').innerText;
 
-            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER v2.2 ---
+            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER v2.2.1 ---
 Marca/Modelo: ${brand} ${model}
 Volumen Teórico: ${volTheo} L
 Superficie Útil: ${surface} cm² | Peso Total: ${weight} g
 Nota Global: ${score} / 10
---------------------------------------------`;
+----------------------------------------------`;
 
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(summaryText).then(() => {
