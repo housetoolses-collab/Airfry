@@ -89,7 +89,7 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="font-bold text-lg leading-none tracking-tight text-white">HOUSE TOOLS AUDITOR</h1>
-                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.1 LAB</span>
+                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.2 LAB</span>
                     </div>
                     <p class="text-xs text-slate-400 mt-1 hidden sm:block">Sistema Profesional de Auditoría Técnico-Metrológica, Térmica y Aerodinámica</p>
                 </div>
@@ -97,31 +97,22 @@
 
             <!-- Action Buttons Toolbar -->
             <div class="flex items-center gap-2 sm:gap-2.5">
-                <!-- Guardar Ficha (Azul Primario) -->
                 <button type="button" onclick="saveRecord()" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-lg transition flex items-center gap-1.5 shadow-md shadow-blue-600/20">
                     <i data-lucide="download-cloud" class="w-4 h-4"></i>
                     <span>Guardar Ficha</span>
                 </button>
-
-                <!-- Exportar Excel (Verde) -->
                 <button type="button" onclick="exportExcel()" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg transition flex items-center gap-1.5 shadow-md shadow-emerald-600/20">
                     <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
                     <span>Exportar Excel</span>
                 </button>
-
-                <!-- Copiar (Gris) -->
                 <button type="button" onclick="copySummary()" class="px-3.5 py-1.5 text-xs sm:text-sm font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition flex items-center gap-1.5">
                     <i data-lucide="clipboard-copy" class="w-4 h-4"></i>
                     <span>Copiar</span>
                 </button>
-
-                <!-- Guardar PDF -->
                 <button type="button" onclick="window.print()" title="Guardar PDF" class="p-2 sm:px-3 sm:py-1.5 text-xs sm:text-sm font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition flex items-center gap-1.5">
                     <i data-lucide="file-text" class="w-4 h-4"></i>
                     <span class="hidden sm:inline">Guardar PDF</span>
                 </button>
-
-                <!-- Reiniciar / Papelera (Rojo Circular) -->
                 <button type="button" onclick="resetForm()" title="Reiniciar auditoría" class="p-2 text-red-400 hover:text-white bg-red-950/40 hover:bg-red-700/80 border border-red-800/50 rounded-lg transition flex items-center justify-center">
                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>
@@ -159,7 +150,7 @@
                     <i data-lucide="weight" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <div class="text-xs text-slate-400 font-medium">Peso Conjunto</div>
+                    <div class="text-xs text-slate-400 font-medium">Peso Conjunto Total</div>
                     <div class="text-xl font-bold text-white font-mono" id="stat-peso-total">0 g</div>
                 </div>
             </div>
@@ -190,15 +181,15 @@
                 <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-2">Marca / Fabricante</label>
-                        <input type="text" id="brand" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="Ej. Ninja, Cosori, Cecotec">
+                        <input type="text" id="brand" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="Ej. Cecotec, Cosori, Ninja">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-2">Modelo Exacto</label>
-                        <input type="text" id="model" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="Ej. DualZone AF300EU">
+                        <input type="text" id="model" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="Ej. Cecofry Inox 6000">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-2">Número de Serie / Lote</label>
-                        <input type="text" id="serial" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="SN-2024-889X">
+                        <input type="text" id="serial" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="SN-2026-889X">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-2">Arquitectura / Configuración</label>
@@ -206,7 +197,7 @@
                             <option value="cesta_unica">Cesta Única (Cajón extraíble)</option>
                             <option value="doble_cesta">Doble Cesta (Cajones independientes)</option>
                             <option value="horno">Tipo Horno / Multifunción (Puerta abatible)</option>
-                            <option value="cubeta_cristal_ninja">Cubeta Superior de Cristal / Sistema Invertido (Tipo Ninja)</option>
+                            <option value="cubeta_cristal_ninja">Cubeta Superior de Cristal / Sistema Invertido</option>
                         </select>
                     </div>
                 </div>
@@ -223,11 +214,11 @@
                 </div>
                 <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Ancho Superior Cubeta (cm)</label>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Ancho Superior Cubeta [Izquierda-Derecha] (cm)</label>
                         <input type="number" step="0.1" id="basket_width" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="22.5">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Largo Superior Cubeta (cm)</label>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Largo Superior Cubeta [Frente-Fondo] (cm)</label>
                         <input type="number" step="0.1" id="basket_length" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="22.5">
                     </div>
                     <div>
@@ -245,7 +236,7 @@
                     <div>
                         <div class="flex items-center justify-between mb-2">
                             <label class="text-xs font-medium text-slate-400">Superficie Útil Posado (cm²)</label>
-                            <span class="text-[10px] text-brand-400 font-mono">Calculado / Editable</span>
+                            <span class="text-[10px] text-brand-400 font-mono">Estimada / Aproximada</span>
                         </div>
                         <input type="number" step="0.1" id="useful_surface" class="w-full bg-slate-950 border border-brand-500/40 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-brand-400 focus:outline-none focus:border-brand-500 transition" placeholder="400.0">
                     </div>
@@ -254,8 +245,11 @@
                         <input type="number" step="0.1" id="depth_above_rack" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="11.2">
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Cámara de Aire bajo Rejilla (cm) <span class="text-slate-500 font-normal">(Profundímetro / Calibre al fondo)</span></label>
-                        <input type="number" step="0.1" id="air_chamber_below" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="1.8">
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Cámara de Aire bajo Rejilla <span class="text-brand-400 font-mono">(Entrada en mm con pie de rey)</span></label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="number" step="0.1" id="air_chamber_mm" oninput="autoCalcAirChamber()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="Ej. 18 mm">
+                            <input type="text" id="air_chamber_cm_display" readonly class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-brand-400 font-mono font-semibold" placeholder="1.8 cm autom.">
+                        </div>
                     </div>
                 </div>
             </section>
@@ -265,16 +259,19 @@
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">03</span>
-                        <h2 class="text-base font-semibold text-white">Metrología y Volumetría Útil</h2>
+                        <h2 class="text-base font-semibold text-white">Metrología y Volumetría Estratificada</h2>
                     </div>
                     <i data-lucide="droplet" class="w-5 h-5 text-slate-500"></i>
                 </div>
                 <div class="p-6 space-y-6">
-                    <!-- Top Volume Baseline -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-800">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-800">
                         <div>
                             <label class="block text-xs font-medium text-slate-400 mb-2">Capacidad Teórica Anunciada (L)</label>
                             <input type="number" step="0.05" id="vol_theoretical" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="5.5">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Capacidad Base hasta la Rejilla (L) <span class="text-slate-500">(Volumen Muerto Inferior)</span></label>
+                            <input type="number" step="0.05" id="vol_base_rack" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="0.65">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-slate-400 mb-2">Volumen Real Total al Borde con Agua (L)</label>
@@ -284,30 +281,27 @@
 
                     <!-- Stratified Height Levels -->
                     <div class="space-y-4">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Niveles Estratificados de Capacidad Útil (Prueba de Agua sobre Rejilla)</h3>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Niveles Estratificados de Capacidad Útil (Descontando Base Inferior)</h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <!-- A3 -->
                             <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="text-xs font-bold text-amber-400 font-mono">A3 (3 cm)</span>
                                     <span class="text-[11px] font-mono text-slate-400" id="pct_a3">0% real</span>
                                 </div>
-                                <div class="text-[11px] text-slate-400 leading-tight">Monocapa fina (croquetas, nuggets, patatas)</div>
+                                <div class="text-[11px] text-slate-400 leading-tight">Monocapa fina (croquetas, nuggets)</div>
                                 <input type="number" step="0.05" id="vol_a3" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="1.20">
                             </div>
 
-                            <!-- A4 -->
                             <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="text-xs font-bold text-amber-400 font-mono">A4 (4 cm)</span>
                                     <span class="text-[11px] font-mono text-slate-400" id="pct_a4">0% real</span>
                                 </div>
-                                <div class="text-[11px] text-slate-400 leading-tight">Monocapa voluminosa (muslos pollo, asar)</div>
+                                <div class="text-[11px] text-slate-400 leading-tight">Monocapa voluminosa (muslos pollo)</div>
                                 <input type="number" step="0.05" id="vol_a4" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="1.60">
                             </div>
 
-                            <!-- A6 -->
                             <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="text-xs font-bold text-amber-400 font-mono">A6 (6 cm)</span>
@@ -317,13 +311,12 @@
                                 <input type="number" step="0.05" id="vol_a6" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="2.40">
                             </div>
 
-                            <!-- MAX -->
                             <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
                                 <div class="flex justify-between items-center">
                                     <span class="text-xs font-bold text-red-400 font-mono">Línea MÁX</span>
                                     <span class="text-[11px] font-mono text-slate-400" id="pct_max">0% real</span>
                                 </div>
-                                <div class="text-[11px] text-slate-400 leading-tight">Máximo seguro (piezas grandes enteras)</div>
+                                <div class="text-[11px] text-slate-400 leading-tight">Máximo seguro (piezas grandes)</div>
                                 <input type="number" step="0.05" id="vol_max" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="3.80">
                             </div>
                         </div>
@@ -332,138 +325,187 @@
                     <!-- Visual Progress Bar Stack -->
                     <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
                         <div class="flex justify-between items-center text-xs">
-                            <span class="font-medium text-slate-300">Distribución de Aprovechamiento Volumétrico Real</span>
+                            <span class="font-medium text-slate-300">Distribución de Aprovechamiento Volumétrico Real (Neto s/ Rejilla)</span>
                             <span class="font-mono text-brand-400" id="vol-efficiency-ratio">Eficiencia Monocapa (A4/Teórico): 0%</span>
                         </div>
                         <div class="w-full h-4 bg-slate-900 rounded-full overflow-hidden flex p-0.5 border border-slate-800">
-                            <div id="bar-a3" class="bg-blue-500 h-full rounded-l-full transition-all duration-300" style="width: 0%" title="A3 (3cm)"></div>
-                            <div id="bar-a4" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%" title="A4 (4cm)"></div>
-                            <div id="bar-a6" class="bg-amber-500 h-full transition-all duration-300" style="width: 0%" title="A6 (6cm)"></div>
-                            <div id="bar-max" class="bg-brand-600 h-full rounded-r-full transition-all duration-300" style="width: 0%" title="MAX Line"></div>
-                        </div>
-                        <div class="flex items-center justify-between text-[11px] text-slate-400 px-1 font-mono">
-                            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500"></span> A3</span>
-                            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> A4</span>
-                            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> A6</span>
-                            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-brand-600"></span> MÁXIMO</span>
+                            <div id="bar-a3" class="bg-blue-500 h-full rounded-l-full transition-all duration-300" style="width: 0%"></div>
+                            <div id="bar-a4" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%"></div>
+                            <div id="bar-a6" class="bg-amber-500 h-full transition-all duration-300" style="width: 0%"></div>
+                            <div id="bar-max" class="bg-brand-600 h-full rounded-r-full transition-all duration-300" style="width: 0%"></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- APARTADO 04 -->
+            <!-- APARTADO 04: ANÁLISIS CONSTRUCTIVO, PESOS, MATERIALES Y AERODINÁMICA -->
             <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">04</span>
-                        <h2 class="text-base font-semibold text-white">Análisis Constructivo, Pesos y Aerodinámica</h2>
+                        <h2 class="text-base font-semibold text-white">Análisis Constructivo, Pesos, Materiales y Aerodinámica</h2>
                     </div>
                     <i data-lucide="scale" class="w-5 h-5 text-slate-500"></i>
                 </div>
-                <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Peso del Cajón Vacío (g) <span class="text-slate-500">(Sin rejilla)</span></label>
-                        <input type="number" step="1" id="weight_drawer" oninput="autoSumWeight()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="780">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Peso de la Rejilla (g)</label>
-                        <input type="number" step="1" id="weight_rack" oninput="autoSumWeight()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="185">
-                    </div>
-                    <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <label class="text-xs font-medium text-slate-400">Peso Conjunto Total (g)</label>
-                            <span class="text-[10px] text-brand-400 font-mono">Suma Aut. / Editable</span>
+                <div class="p-6 space-y-6">
+                    
+                    <!-- Pesos -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 pb-6 border-b border-slate-800">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Peso del Chasis / Cuerpo (sin cajón) [kg]</label>
+                            <input type="number" step="0.05" id="weight_chassis_kg" oninput="autoSumWeight()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="3.50">
                         </div>
-                        <input type="number" step="1" id="weight_total" class="w-full bg-slate-950 border border-brand-500/40 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-brand-400 focus:outline-none focus:border-brand-500 transition" placeholder="965">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Peso del Cajón Vacío (g) <span class="text-slate-500">(Sin rejilla)</span></label>
+                            <input type="number" step="1" id="weight_drawer" oninput="autoSumWeight()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="780">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Peso de la Rejilla (g)</label>
+                            <input type="number" step="1" id="weight_rack" oninput="autoSumWeight()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="185">
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="text-xs font-medium text-slate-400">Peso Total Conjunto (g)</label>
+                                <span class="text-[10px] text-brand-400 font-mono">Suma Automática</span>
+                            </div>
+                            <input type="number" step="1" id="weight_total" class="w-full bg-slate-950 border border-brand-500/40 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-brand-400 focus:outline-none focus:border-brand-500 transition" placeholder="4465">
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Pared Cubeta (Micrómetro) [mm]</label>
-                        <input type="number" step="0.01" id="thick_wall_mm" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="0.85">
+
+                    <!-- Materiales HW300PRO -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-800">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Detección Substrato Cubeta (HW300PRO)</label>
+                            <select id="substratum_type" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                <option value="nfe_aluminio">Modo NFE (No Ferroso / Aluminio - Alta conductividad)</option>
+                                <option value="ferroso_acero">Modo F (Ferroso / Acero-Hierro - Alta inercia térmica)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Verificación Materiales Exteriores / Chasis</label>
+                            <select id="external_materials_check" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                <option value="inox_real">Acero Inoxidable Auténtico (Verificado imán / sonda)</option>
+                                <option value="acero_ferritico">Acero Ferrítico / Chapa económica</option>
+                                <option value="plastico_pintado">Plástico rígido con acabado/pintura metalizada (Estético)</option>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Chapa Rejilla (Micrómetro) [mm]</label>
-                        <input type="number" step="0.01" id="thick_rack_mm" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="1.20">
+
+                    <!-- Espesores y Geometría constructiva -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 pb-6 border-b border-slate-800">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Pared Cubeta [mm]</label>
+                            <input type="number" step="0.01" id="thick_wall_mm" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="0.85">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Chapa Rejilla [mm]</label>
+                            <input type="number" step="0.01" id="thick_rack_mm" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="1.20">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Aerodinámica Fondo de Cubeta</label>
+                            <select id="aerodynamics_bottom" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                <option value="plana">Plana / Estándar (Sin deflectores)</option>
+                                <option value="protuberancia_simple">Protuberancia central simple</option>
+                                <option value="estrella_helicoidal">Canalización avanzada tipo estrella / helicoidal (Alta eficiencia)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Diseño Geométrico Rejilla</label>
+                            <select id="rack_geo_design" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                <option value="malla_varillas">Malla de varillas metálicas clásica</option>
+                                <option value="chapa_troquelada">Chapa troquelada plana (Económica)</option>
+                                <option value="ranuras_relieve">Ranuras de ventilación con relieve / perfiles (Gama superior)</option>
+                            </select>
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Aerodinámica del Fondo de Cubeta</label>
-                        <select id="aerodynamics_bottom" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
-                            <option value="plana">Plana / Estándar (Sin deflectores)</option>
-                            <option value="relieve_guiado">Con relieve / Guiado de aire (estrellas, helicoidal)</option>
-                        </select>
+
+                    <!-- Mapa Perimetral de Tolerancias con Galgas (4 Puntos) -->
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400">Mapa Perimetral de Holguras con Galgas (Tolerancias Mecánicas)</h3>
+                            <span class="text-[10px] font-mono text-slate-500">4 Puntos de Control (mm)</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Holgura Superior [Norte] (mm)</label>
+                                <input type="number" step="0.05" id="feeler_north" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="0.40">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Holgura Inferior [Sur] (mm)</label>
+                                <input type="number" step="0.05" id="feeler_south" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="0.45">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Holgura Izquierda [Oeste] (mm)</label>
+                                <input type="number" step="0.05" id="feeler_west" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="0.40">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Holgura Derecha [Este] (mm)</label>
+                                <input type="number" step="0.05" id="feeler_east" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="0.80">
+                            </div>
+                        </div>
+
+                        <div id="feeler_gauge_card" class="p-3 rounded-xl border bg-slate-900 border-slate-800 text-xs font-medium flex items-center gap-3 mt-2">
+                            <i data-lucide="gauge" class="w-5 h-5 text-slate-500 flex-shrink-0"></i>
+                            <span id="feeler_gauge_text" class="text-slate-400">Introduzca las 4 lecturas perimetrales para diagnosticar simetría y posibles alabeos...</span>
+                        </div>
                     </div>
-                    <div class="lg:col-span-3">
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Diseño Geométrico de la Rejilla</label>
-                        <select id="rack_geo_design" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
-                            <option value="malla_varillas">Malla de varillas metálicas clásica</option>
-                            <option value="chapa_troquelada">Chapa troquelada / Ranuras de ventilación con relieve</option>
-                        </select>
-                    </div>
+
                 </div>
             </section>
 
-            <!-- APARTADO 05 -->
+            <!-- APARTADO 05: ERGONOMÍA, SEGURIDAD, CIERRE E INTERFAZ -->
             <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">05</span>
-                        <h2 class="text-base font-semibold text-white">Ergonomía, Seguridad y Cierre</h2>
+                        <h2 class="text-base font-semibold text-white">Ergonomía, Seguridad, Cierre e Interfaz de Control</h2>
                     </div>
                     <i data-lucide="shield" class="w-5 h-5 text-slate-500"></i>
                 </div>
                 <div class="p-6 space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
                             <label class="block text-xs font-medium text-slate-400 mb-2">Fuerza de Extracción (Valoración Táctil)</label>
                             <select id="extraction_force" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
-                                <option value="muy_suave">Muy suave / Holgado (Mínima resistencia)</option>
+                                <option value="muy_suave">Muy suave / Holgado</option>
                                 <option value="suave_firme">Suave y firme (Estándar óptimo, trinquete preciso)</option>
-                                <option value="duro_sujecion">Duro / Requiere sujeción del cuerpo con la otra mano</option>
-                                <option value="excesivo_atascamiento">Excesivo / Atascos o tirones bruscos en caliente</option>
+                                <option value="duro_sujecion">Duro / Requiere sujeción del cuerpo</option>
+                                <option value="excesivo_atascamiento">Excesivo / Atascos en caliente</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Estabilidad Antideslizante (Gomas de Apoyo Base)</label>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Estabilidad Antideslizante Base</label>
                             <select id="base_stability" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
-                                <option value="excelente">Excelente agarre (Inmóvil al accionar o tirar)</option>
-                                <option value="desplazamiento_leve">Desplazamiento leve sobre la encimera</option>
-                                <option value="inestable">Inestable / Se desliza con facilidad</option>
+                                <option value="excelente">Excelente agarre (Inmóvil)</option>
+                                <option value="desplazamiento_leve">Desplazamiento leve</option>
+                                <option value="inestable">Inestable / Se desliza</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Interfaz / Panel de Control</label>
+                            <select id="control_interface" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                <option value="tactil_digital">Pantalla Táctil Digital (Matriz LED / Táctil capacitivo)</option>
+                                <option value="mecanico_ruletas">Mecánico Analógico (Doble ruleta bimetálica/reloj)</option>
+                                <option value="hibrido">Híbrido (Pantalla con dial físico)</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- Feeler Gauge Measurement with Dynamic Card -->
-                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400">Tolerancia Mecánica y Medición de Holguras (Juego de Galgas)</h3>
-                            <span class="text-[10px] font-mono text-slate-500">Galgas de Espesores (mm)</span>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Protección Térmica Frontal (°C) <span class="text-slate-500">(Tras ciclo largo)</span></label>
+                            <input type="number" step="0.5" id="thermal_protection_front" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="42.0">
                         </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                            <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-2">Lectura de Galga Perimetral (mm)</label>
-                                <input type="number" step="0.05" id="feeler_gauge_mm" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="Ej. 0.45">
-                            </div>
-                            <div class="md:col-span-2">
-                                <label class="block text-xs font-medium text-slate-400 mb-2">Diagnóstico de Tolerancia Automático</label>
-                                <div id="feeler_gauge_card" class="p-3 rounded-xl border bg-slate-900 border-slate-800 text-xs font-medium flex items-center gap-3">
-                                    <i data-lucide="gauge" class="w-5 h-5 text-slate-500 flex-shrink-0"></i>
-                                    <span id="feeler_gauge_text" class="text-slate-400">Introduzca el grosor de galga medido para clasificar la holgura del cierre...</span>
-                                </div>
-                            </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Temperatura de Escape / Ventilador Trasero (°C) <span class="text-slate-500">(Seguridad Chasis)</span></label>
+                            <input type="number" step="0.5" id="temp_exhaust_c" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="68.5">
                         </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Protección Térmica Frontal Exterior (Tras ciclo largo)</label>
-                        <select id="thermal_protection_front" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
-                            <option value="seguro">&lt; 45°C - Seguro / Tibio al tacto</option>
-                            <option value="peligro">&gt; 65°C - Peligro de quemadura al contacto</option>
-                        </select>
                     </div>
                 </div>
             </section>
 
-            <!-- APARTADO 06 -->
+            <!-- APARTADO 06: REVESTIMIENTO ANTIADERENTE -->
             <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -474,15 +516,15 @@
                 </div>
                 <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Paredes Cubeta (µm) <span class="text-slate-500">(HW300PRO)</span></label>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Paredes Cubeta (µm) [HW300PRO]</label>
                         <input type="number" step="1" id="coating_walls_um" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="35">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Fondo Cubeta (µm) <span class="text-slate-500">(HW300PRO)</span></label>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Fondo Cubeta (µm) [HW300PRO]</label>
                         <input type="number" step="1" id="coating_bottom_um" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="42">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Rejilla (µm) <span class="text-slate-500">(HW300PRO)</span></label>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Espesor Rejilla (µm) [HW300PRO]</label>
                         <input type="number" step="1" id="coating_rack_um" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="28">
                     </div>
                     <div>
@@ -494,7 +536,7 @@
                         </select>
                     </div>
                     <div class="md:col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Continuidad y Acabado en Cantos (Inspección Visual / Lupa)</label>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Continuidad y Acabado en Cantos (Inspección Visual)</label>
                         <select id="coating_continuity" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
                             <option value="uniforme">Uniforme y bien cubierto en aristas y bordes</option>
                             <option value="grosor_reducido">Grosor reducido en cantos troquelados</option>
@@ -519,7 +561,7 @@
                         <input type="number" step="10" id="power_declared_w" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="1700">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Consumo Energético Acumulado (kWh) <span class="text-slate-500">(Wattímetro @ 180°C / 20 min)</span></label>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Consumo Energético Acumulado (kWh) <span class="text-slate-500">(@ 180°C / 20 min)</span></label>
                         <input type="number" step="0.001" id="energy_kwh" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="0.345">
                     </div>
                 </div>
@@ -535,12 +577,12 @@
                     <i data-lucide="volume-2" class="w-5 h-5 text-slate-500"></i>
                 </div>
                 <div class="p-6">
-                    <label class="block text-xs font-medium text-slate-400 mb-2">Nivel de Ruido Operativo (dBA) <span class="text-slate-500">(Medición a 1 metro a máxima potencia)</span></label>
+                    <label class="block text-xs font-medium text-slate-400 mb-2">Nivel de Ruido Operativo (dBA) <span class="text-slate-500">(A 1 metro a máxima potencia)</span></label>
                     <input type="number" step="0.5" id="noise_dba" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="54.5">
                 </div>
             </section>
 
-            <!-- APARTADO 09 -->
+            <!-- APARTADO 09: ENSAYOS TÉRMICOS Y CONVECCIÓN -->
             <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
@@ -550,7 +592,6 @@
                     <i data-lucide="thermometer" class="w-5 h-5 text-slate-500"></i>
                 </div>
                 <div class="p-6 space-y-6">
-                    <!-- Global Thermal Performance Row -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-800">
                         <div>
                             <label class="block text-xs font-medium text-slate-400 mb-2">Tiempo de Precalentamiento a 180°C (s)</label>
@@ -561,8 +602,8 @@
                             <input type="text" id="temp_deviation_c" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="+5 o -10">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Temp. Ventilador / Escape Trasero (°C)</label>
-                            <input type="number" step="0.1" id="temp_exhaust_c" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="68.5">
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Tiempo de Recuperación Térmica (s) <span class="text-slate-500">(Tras remover alimentos)</span></label>
+                            <input type="number" step="1" id="thermal_recovery_s" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="35">
                         </div>
                     </div>
 
@@ -653,7 +694,7 @@
     <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>HOUSE TOOLS AUDITOR &copy; 2026 - Laboratorio de Metrología y Ensayos de Eficiencia</p>
-            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.5</p>
+            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.2 LAB</p>
         </div>
     </footer>
 
@@ -663,7 +704,7 @@
         lucide.createIcons();
 
         // Local Storage Key
-        const STORAGE_KEY = 'AIR_FRYER_AUDIT_DATA_V2.5';
+        const STORAGE_KEY = 'AIR_FRYER_AUDIT_DATA_V2.2';
 
         // Auto calculate surface cm² from width and length
         function autoCalcSurface() {
@@ -674,43 +715,58 @@
             }
         }
 
-        // Auto sum drawer + rack weight
+        // Auto convert air chamber from mm to cm
+        function autoCalcAirChamber() {
+            const mm = parseFloat(document.getElementById('air_chamber_mm').value) || 0;
+            const cm = mm / 10;
+            document.getElementById('air_chamber_cm_display').value = `${cm.toFixed(2)} cm autom.`;
+        }
+
+        // Auto sum chassis + drawer + rack weight
         function autoSumWeight() {
+            const wChassisKg = parseFloat(document.getElementById('weight_chassis_kg').value) || 0;
             const wDrawer = parseFloat(document.getElementById('weight_drawer').value) || 0;
             const wRack = parseFloat(document.getElementById('weight_rack').value) || 0;
-            if (wDrawer > 0 || wRack > 0) {
-                document.getElementById('weight_total').value = Math.round(wDrawer + wRack);
+            
+            const totalGrams = Math.round((wChassisKg * 1000) + wDrawer + wRack);
+            if (totalGrams > 0) {
+                document.getElementById('weight_total').value = totalGrams;
             }
         }
 
-        // Evaluate Feeler Gauge Tolerance Card
-        function evaluateFeelerGauge() {
-            const feelerVal = parseFloat(document.getElementById('feeler_gauge_mm').value);
+        // Evaluate 4-Point Perimeter Feeler Gauge Tolerance
+        function evaluateFeelerGauges() {
+            const north = parseFloat(document.getElementById('feeler_north').value) || 0;
+            const south = parseFloat(document.getElementById('feeler_south').value) || 0;
+            const west = parseFloat(document.getElementById('feeler_west').value) || 0;
+            const east = parseFloat(document.getElementById('feeler_east').value) || 0;
+
             const cardEl = document.getElementById('feeler_gauge_card');
             const textEl = document.getElementById('feeler_gauge_text');
 
-            if (isNaN(feelerVal) || feelerVal <= 0) {
-                cardEl.className = "p-3 rounded-xl border bg-slate-900 border-slate-800 text-xs font-medium flex items-center gap-3";
-                textEl.innerHTML = '<span class="text-slate-400">Introduzca el grosor de galga medido para clasificar la holgura del cierre...</span>';
-                return null;
+            if (north === 0 && south === 0 && west === 0 && east === 0) {
+                cardEl.className = "p-3 rounded-xl border bg-slate-900 border-slate-800 text-xs font-medium flex items-center gap-3 mt-2";
+                textEl.innerHTML = '<span class="text-slate-400">Introduzca las 4 lecturas perimetrales para diagnosticar simetría y posibles alabeos...</span>';
+                return 'neutro';
             }
 
-            if (feelerVal < 0.30) {
-                cardEl.className = "p-3 rounded-xl border bg-blue-500/10 border-blue-500/30 text-blue-400 text-xs font-medium flex items-center gap-3";
-                textEl.innerHTML = `<strong>[${feelerVal.toFixed(2)} mm]</strong> Ajuste de Alta Precisión / Posible Rozamiento Anómalo (Sellado térmico óptimo).`;
-                return 'alta_precision';
-            } else if (feelerVal <= 0.70) {
-                cardEl.className = "p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-400 text-xs font-medium flex items-center gap-3";
-                textEl.innerHTML = `<strong>[${feelerVal.toFixed(2)} mm]</strong> Holgura Mínima Nominal (Tolerancia ideal de fábrica para dilatación).`;
-                return 'holgura_minima';
-            } else if (feelerVal <= 1.40) {
-                cardEl.className = "p-3 rounded-xl border bg-amber-500/10 border-amber-500/30 text-amber-400 text-xs font-medium flex items-center gap-3";
-                textEl.innerHTML = `<strong>[${feelerVal.toFixed(2)} mm]</strong> Holgura Moderada (Perceptible al tacto, posible pequeña pérdida de caudal).`;
-                return 'holgura_moderada';
+            const values = [north, south, west, east].filter(v => v > 0);
+            const maxVal = Math.max(...values);
+            const minVal = Math.min(...values);
+            const diff = maxVal - minVal;
+
+            if (diff > 0.40) {
+                cardEl.className = "p-3 rounded-xl border bg-red-500/10 border-red-500/30 text-red-400 text-xs font-medium flex items-center gap-3 mt-2";
+                textEl.innerHTML = `<strong>[Desviación ${diff.toFixed(2)} mm]</strong> ⚠️ GEOMETRÍA IRREGULAR / ALABEO SEVERO: Asimetría perimetral notable por defecto de fabricación.`;
+                return 'geometria_irregular';
+            } else if (maxVal <= 0.70) {
+                cardEl.className = "p-3 rounded-xl border bg-emerald-500/10 border-emerald-500/30 text-emerald-400 text-xs font-medium flex items-center gap-3 mt-2";
+                textEl.innerHTML = `<strong>[Máx ${maxVal.toFixed(2)} mm]</strong> ✅ TOLERANCIA ÓPTIMA: Cierre perimetral simétrico y equilibrado.`;
+                return 'optimo';
             } else {
-                cardEl.className = "p-3 rounded-xl border bg-red-500/10 border-red-500/30 text-red-400 text-xs font-medium flex items-center gap-3";
-                textEl.innerHTML = `<strong>[${feelerVal.toFixed(2)} mm]</strong> Holgura Excesiva / Fuga Térmica (Desajuste estructural severo).`;
-                return 'holgura_excesiva';
+                cardEl.className = "p-3 rounded-xl border bg-amber-500/10 border-amber-500/30 text-amber-400 text-xs font-medium flex items-center gap-3 mt-2";
+                textEl.innerHTML = `<strong>[Máx ${maxVal.toFixed(2)} mm]</strong> ⚡ HOLGURA MODERADA: Aceptable pero con ligera pérdida de caudal térmico.`;
+                return 'moderada';
             }
         }
 
@@ -725,14 +781,15 @@
             document.getElementById('stat-sup-util').innerText = `${Math.round(surface)} cm²`;
             document.getElementById('stat-peso-total').innerText = `${Math.round(weightTotal)} g`;
 
-            // 2. Volumetric Stratification & Ratios
+            // 2. Volumetric Stratification & Ratios (Descontando base inferior hasta rejilla)
             const volRealBrim = parseFloat(document.getElementById('vol_real_brim').value) || 0;
+            const volBaseRack = parseFloat(document.getElementById('vol_base_rack').value) || 0;
             const volA3 = parseFloat(document.getElementById('vol_a3').value) || 0;
             const volA4 = parseFloat(document.getElementById('vol_a4').value) || 0;
             const volA6 = parseFloat(document.getElementById('vol_a6').value) || 0;
             const volMax = parseFloat(document.getElementById('vol_max').value) || 0;
 
-            const baseRef = volRealBrim > 0 ? volRealBrim : (volTheo > 0 ? volTheo : 1);
+            const baseRef = volRealBrim > 0 ? (volRealBrim - volBaseRack) : (volTheo > 0 ? volTheo : 1);
 
             const pctA3 = Math.min(100, (volA3 / baseRef) * 100);
             const pctA4 = Math.min(100, (volA4 / baseRef) * 100);
@@ -744,21 +801,19 @@
             document.getElementById('pct_a6').innerText = `${pctA6.toFixed(1)}% real`;
             document.getElementById('pct_max').innerText = `${pctMax.toFixed(1)}% real`;
 
-            // Dynamic Progress Bar Stack Widths
             document.getElementById('bar-a3').style.width = `${pctA3}%`;
             document.getElementById('bar-a4').style.width = `${Math.max(0, pctA4 - pctA3)}%`;
             document.getElementById('bar-a6').style.width = `${Math.max(0, pctA6 - pctA4)}%`;
             document.getElementById('bar-max').style.width = `${Math.max(0, pctMax - pctA6)}%`;
 
-            // Monolayer Efficiency Ratio vs Advertised
             const effRatio = volTheo > 0 ? ((volA4 / volTheo) * 100).toFixed(1) : '0.0';
             document.getElementById('vol-efficiency-ratio').innerText = `Eficiencia Monocapa (A4/Teórico): ${effRatio}%`;
 
-            // 3. Feeler Gauge Diagnostic
-            const feelerClass = evaluateFeelerGauge();
+            // 3. Feeler Gauge Diagnostic Evaluation
+            const feelerStatus = evaluateFeelerGauges();
 
             // 4. Technical Score Evaluation Algorithm
-            let score = 5.0; // Baseline neutral score
+            let score = 5.0;
 
             if (volTheo > 0 && volRealBrim > 0) {
                 const brimRatio = volRealBrim / volTheo;
@@ -766,16 +821,23 @@
                 else if (brimRatio < 0.85) score -= 0.8;
             }
 
-            if (parseFloat(document.getElementById('air_chamber_below').value) >= 1.5) score += 0.5;
-            if (document.getElementById('aerodynamics_bottom').value === 'relieve_guiado') score += 0.5;
-            if (document.getElementById('extraction_force').value === 'suave_firme') score += 0.7;
+            if (document.getElementById('aerodynamics_bottom').value === 'estrella_helicoidal') score += 0.6;
+            if (document.getElementById('rack_geo_design').value === 'ranuras_relieve') score += 0.5;
+            if (document.getElementById('substratum_type').value === 'ferroso_acero') score += 0.4;
+            if (document.getElementById('external_materials_check').value === 'inox_real') score += 0.6;
+            if (document.getElementById('external_materials_check').value === 'plastico_pintado') score -= 1.0;
+
+            if (document.getElementById('extraction_force').value === 'suave_firme') score += 0.6;
             if (document.getElementById('extraction_force').value === 'excesivo_atascamiento') score -= 1.2;
 
-            if (feelerClass === 'holgura_minima' || feelerClass === 'alta_precision') score += 0.6;
-            if (feelerClass === 'holgura_excesiva') score -= 1.0;
+            if (feelerStatus === 'optimo') score += 0.6;
+            if (feelerStatus === 'geometria_irregular') score -= 1.2;
 
             if (document.getElementById('base_stability').value === 'excelente') score += 0.5;
-            if (document.getElementById('thermal_protection_front').value === 'peligro') score -= 1.5;
+
+            const thermalFront = parseFloat(document.getElementById('thermal_protection_front').value) || 0;
+            if (thermalFront > 0 && thermalFront <= 45) score += 0.6;
+            else if (thermalFront > 65) score -= 1.5;
 
             const coatingWall = parseFloat(document.getElementById('coating_walls_um').value) || 0;
             if (coatingWall >= 30) score += 0.5;
@@ -803,7 +865,6 @@
             if (noise > 0 && noise <= 56) score += 0.5;
             else if (noise > 62) score -= 0.6;
 
-            // Clamp score between 1.0 and 10.0
             score = Math.max(1.0, Math.min(10.0, score));
 
             // Display Score & Badge
@@ -828,12 +889,11 @@
                 scoreBadge.innerText = "APROBADO (GRADE C)";
                 scoreStatus.innerText = "Cumple especificaciones básicas pero presenta limitaciones en pruebas clave.";
             } else {
-                scoreBadge.className = "px-6 py-3 rounded-xl font-bold font-mono text-sm tracking-wider uppercase bg-red-500/10 text-red-400 border border-red-500/30 shadow-lg shadow-red-500/10";
+                scoreBadge.className = "px-6 py-3 rounded-xl font-bold font-mono text-sm tracking-wider uppercase bg-red-500/10 text-red-400 border border-red-800/50 shadow-lg shadow-red-500/10";
                 scoreBadge.innerText = "DEFICIENTE (REVISE FAIL)";
                 scoreStatus.innerText = "Desviaciones graves en ergonomía, seguridad térmica o volumen real.";
             }
 
-            // Auto save state locally
             saveToLocalStorage();
         }
 
@@ -877,19 +937,16 @@
             const brand = document.getElementById('brand').value || 'N/A';
             const model = document.getElementById('model').value || 'N/A';
             const volTheo = document.getElementById('vol_theoretical').value || '0';
-            const volBrim = document.getElementById('vol_real_brim').value || '0';
             const surface = document.getElementById('useful_surface').value || '0';
             const weight = document.getElementById('weight_total').value || '0';
-            const feeler = document.getElementById('feeler_gauge_mm').value || 'N/A';
             const score = document.getElementById('score-display').innerText;
 
-            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER ---
+            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER v2.2 ---
 Marca/Modelo: ${brand} ${model}
-Volumen Anunciado / Real: ${volTheo}L / ${volBrim}L
+Volumen Teórico: ${volTheo} L
 Superficie Útil: ${surface} cm² | Peso Total: ${weight} g
-Galgas de Espesores: ${feeler} mm
 Nota Global: ${score} / 10
---------------------------------------`;
+--------------------------------------------`;
 
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(summaryText).then(() => {
@@ -947,6 +1004,7 @@ Nota Global: ${score} / 10
         // Page Load Init
         window.onload = function() {
             loadFromLocalStorage();
+            autoCalcAirChamber();
             calculateAll();
         };
     </script>
