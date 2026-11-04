@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOUSE TOOLS AUDITOR - AIR FRYER v2.3.5 LAB</title>
+    <title>HOUSE TOOLS AUDITOR - AIR FRYER v2.3.6 LAB</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -88,7 +88,7 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="font-bold text-lg leading-none tracking-tight text-white">HOUSE TOOLS AUDITOR</h1>
-                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.3.5 LAB</span>
+                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.3.6 LAB</span>
                     </div>
                     <p class="text-xs text-slate-400 mt-1 hidden sm:block">Sistema Profesional de Auditoría Técnico-Metrológica, Térmica y Aerodinámica</p>
                 </div>
@@ -235,11 +235,62 @@
                 </div>
             </section>
 
-            <!-- APARTADO 02: VALORACIÓN DEL SISTEMA CALEFACTOR (RESISTENCIA) -->
+            <!-- APARTADO 02: GEOMETRÍA FÍSICA DE LA CUBETA Y REJILLA (Antiguo Apartado 3) -->
             <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">02</span>
+                        <h2 class="text-base font-semibold text-white">Geometría Física de la Cubeta y Rejilla</h2>
+                    </div>
+                    <i data-lucide="ruler" class="w-5 h-5 text-slate-500"></i>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Ancho Superior Cubeta [Izquierda-Derecha] (cm)</label>
+                        <input type="number" step="0.1" id="basket_width" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="22.5">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Largo Superior Cubeta [Frente-Fondo] (cm)</label>
+                        <input type="number" step="0.1" id="basket_length" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="22.5">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Profundidad Total Cubeta (cm)</label>
+                        <input type="number" step="0.1" id="basket_depth" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="13.0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Ancho Útil Rejilla (cm)</label>
+                        <input type="number" step="0.1" id="rack_width" oninput="autoCalcSurface()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="20.0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Largo Útil Rejilla (cm)</label>
+                        <input type="number" step="0.1" id="rack_length" oninput="autoCalcSurface()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="20.0">
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="text-xs font-medium text-slate-400">Superficie Útil Posado (cm²)</label>
+                            <span class="text-[10px] text-brand-400 font-mono">Estimada / Aproximada</span>
+                        </div>
+                        <input type="number" step="0.1" id="useful_surface" class="w-full bg-slate-950 border border-brand-500/40 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-brand-400 focus:outline-none focus:border-brand-500 transition" placeholder="400.0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Profundidad Útil sobre Rejilla (cm)</label>
+                        <input type="number" step="0.1" id="depth_above_rack" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="11.2">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Cámara de Aire bajo Rejilla <span class="text-brand-400 font-mono">(Entrada en mm con pie de rey)</span></label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input type="number" step="0.1" id="air_chamber_mm" oninput="autoCalcAirChamber()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="Ej. 18 mm">
+                            <input type="text" id="air_chamber_cm_display" readonly class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-brand-400 font-mono font-semibold" placeholder="1.8 cm autom.">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APARTADO 03: VALORACIÓN DEL SISTEMA CALEFACTOR (Antiguo Apartado 2) -->
+            <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">03</span>
                         <h2 class="text-base font-semibold text-white">Valoración del Sistema Calefactor (Resistencia)</h2>
                     </div>
                     <i data-lucide="flame" class="w-5 h-5 text-slate-500"></i>
@@ -326,57 +377,6 @@
                                     <option value="rigido_sin_juego">Excesivamente rígido (Riesgo de tensión térmica)</option>
                                 </select>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- APARTADO 03 -->
-            <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-                <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">03</span>
-                        <h2 class="text-base font-semibold text-white">Geometría Física de la Cubeta y Rejilla</h2>
-                    </div>
-                    <i data-lucide="ruler" class="w-5 h-5 text-slate-500"></i>
-                </div>
-                <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Ancho Superior Cubeta [Izquierda-Derecha] (cm)</label>
-                        <input type="number" step="0.1" id="basket_width" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="22.5">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Largo Superior Cubeta [Frente-Fondo] (cm)</label>
-                        <input type="number" step="0.1" id="basket_length" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="22.5">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Profundidad Total Cubeta (cm)</label>
-                        <input type="number" step="0.1" id="basket_depth" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="13.0">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Ancho Útil Rejilla (cm)</label>
-                        <input type="number" step="0.1" id="rack_width" oninput="autoCalcSurface()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="20.0">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Largo Útil Rejilla (cm)</label>
-                        <input type="number" step="0.1" id="rack_length" oninput="autoCalcSurface()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="20.0">
-                    </div>
-                    <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <label class="text-xs font-medium text-slate-400">Superficie Útil Posado (cm²)</label>
-                            <span class="text-[10px] text-brand-400 font-mono">Estimada / Aproximada</span>
-                        </div>
-                        <input type="number" step="0.1" id="useful_surface" class="w-full bg-slate-950 border border-brand-500/40 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-brand-400 focus:outline-none focus:border-brand-500 transition" placeholder="400.0">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Profundidad Útil sobre Rejilla (cm)</label>
-                        <input type="number" step="0.1" id="depth_above_rack" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="11.2">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-2">Cámara de Aire bajo Rejilla <span class="text-brand-400 font-mono">(Entrada en mm con pie de rey)</span></label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <input type="number" step="0.1" id="air_chamber_mm" oninput="autoCalcAirChamber()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono" placeholder="Ej. 18 mm">
-                            <input type="text" id="air_chamber_cm_display" readonly class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-brand-400 font-mono font-semibold" placeholder="1.8 cm autom.">
                         </div>
                     </div>
                 </div>
@@ -878,7 +878,7 @@
     <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>HOUSE TOOLS AUDITOR &copy; 2026 - Laboratorio de Metrología y Ensayos de Eficiencia</p>
-            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.3.5 LAB</p>
+            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.3.6 LAB</p>
         </div>
     </footer>
 
@@ -892,7 +892,7 @@
         }
 
         // Local Storage Key
-        const STORAGE_KEY = 'AIR_FRYER_AUDIT_DATA_V2.3.5';
+        const STORAGE_KEY = 'AIR_FRYER_AUDIT_DATA_V2.3.6';
 
         // Auto calculate surface cm² from width and length
         function autoCalcSurface() {
@@ -1228,7 +1228,7 @@
             const weight = document.getElementById('weight_total').value || '0';
             const score = document.getElementById('score-display').innerText;
 
-            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER v2.3.5 ---
+            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER v2.3.6 ---
 Marca/Modelo: ${brand} ${model}
 Volumen Teórico: ${volTheo} L
 Superficie Útil: ${surface} cm² | Peso Total: ${weight} g
