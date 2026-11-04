@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOUSE TOOLS AUDITOR - AIR FRYER v2.3.2 LAB</title>
+    <title>HOUSE TOOLS AUDITOR - AIR FRYER v2.3.5 LAB</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -88,7 +88,7 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="font-bold text-lg leading-none tracking-tight text-white">HOUSE TOOLS AUDITOR</h1>
-                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.3.2 LAB</span>
+                        <span class="px-2 py-0.5 text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full font-mono font-bold">AIR FRYER v2.3.5 LAB</span>
                     </div>
                     <p class="text-xs text-slate-400 mt-1 hidden sm:block">Sistema Profesional de Auditoría Técnico-Metrológica, Térmica y Aerodinámica</p>
                 </div>
@@ -184,7 +184,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-2">Modelo Exacto</label>
-                        <input type="text" id="model" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="Ej. Cecofry Inox 6000">
+                        <input type="text" id="model" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="Ej. Cecofry Inox 8000">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-2">Número de Serie / Lote</label>
@@ -197,6 +197,39 @@
                             <option value="doble_cesta">Doble Cesta (Cajones independientes)</option>
                             <option value="horno">Tipo Horno / Multifunción (Puerta abatible)</option>
                             <option value="cubeta_cristal_ninja">Cubeta Superior de Cristal / Sistema Invertido</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APARTADO 01.B: DIMENSIONES EXTERIORES Y GEOMETRÍA -->
+            <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">01.B</span>
+                        <h2 class="text-base font-semibold text-white">Dimensiones Exteriores y Factor de Forma (Geometría Chasis)</h2>
+                    </div>
+                    <i data-lucide="maximize" class="w-5 h-5 text-slate-500"></i>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Ancho Exterior Chasis (cm)</label>
+                        <input type="number" step="0.1" id="ext_width_cm" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition font-mono" placeholder="30.0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Fondo / Largo Exterior Chasis (cm)</label>
+                        <input type="number" step="0.1" id="ext_depth_cm" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition font-mono" placeholder="35.0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Altura Total Exterior Chasis (cm)</label>
+                        <input type="number" step="0.1" id="ext_height_cm" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition font-mono" placeholder="32.0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 mb-2">Tipología / Factor de Forma Geométrico</label>
+                        <select id="geometric_form_factor" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                            <option value="torre_vertical">Torre vertical alta y estrecha</option>
+                            <option value="cubica_equilibrada" selected>Cúbica / Estándar equilibrada</option>
+                            <option value="baja_horizontal">Baja y horizontal / Panorámica</option>
                         </select>
                     </div>
                 </div>
@@ -473,7 +506,7 @@
                         </div>
                     </div>
 
-                    <!-- Materiales HW300PRO -->
+                    <!-- Materiales HW300PRO (Con Opciones Mixtas/Híbridas) -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-slate-800">
                         <div>
                             <label class="block text-xs font-medium text-slate-400 mb-2">Detección Substrato Cubeta (HW300PRO)</label>
@@ -487,6 +520,8 @@
                             <select id="external_materials_check" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
                                 <option value="inox_real">Acero Inoxidable Auténtico (Verificado imán / sonda)</option>
                                 <option value="acero_ferritico">Acero Ferrítico / Chapa económica</option>
+                                <option value="mixta_chapa_ferritica" selected>Mixta: Cuerpo polímero técnico + Frontal chapa ferrítica (económica)</option>
+                                <option value="mixta_inox">Mixta: Cuerpo polímero técnico + Frontal acero inoxidable austenítico</option>
                                 <option value="plastico_pintado">Plástico rígido con acabado/pintura metalizada (Estético)</option>
                             </select>
                         </div>
@@ -592,17 +627,6 @@
                             </select>
                         </div>
                     </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Protección Térmica Frontal (°C) <span class="text-slate-500">(Tras ciclo largo)</span></label>
-                            <input type="number" step="0.5" id="thermal_protection_front" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="42.0">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Temperatura de Escape / Ventilador Trasero (°C) <span class="text-slate-500">(Seguridad Chasis)</span></label>
-                            <input type="number" step="0.5" id="temp_exhaust_c" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="68.5">
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -655,11 +679,136 @@
                 </div>
             </section>
 
-            <!-- APARTADO 08 -->
+            <!-- APARTADO 08: ENSAYOS TÉRMICOS, CONVECCIÓN Y ERGONOMÍA EN CALIENTE -->
             <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">08</span>
+                        <h2 class="text-base font-semibold text-white">Ensayos Térmicos, Convección y Ergonomía en Caliente</h2>
+                    </div>
+                    <i data-lucide="thermometer" class="w-5 h-5 text-slate-500"></i>
+                </div>
+                <div class="p-6 space-y-6">
+                    <!-- Tiempos optimizados en Minutos y Segundos -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-800">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Tiempo de Precalentamiento a 180°C</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="relative">
+                                    <input type="number" min="0" step="1" id="preheat_min" oninput="syncTimeFields('preheat')" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="2">
+                                    <span class="absolute right-2 top-2.5 text-[10px] text-slate-500">min</span>
+                                </div>
+                                <div class="relative">
+                                    <input type="number" min="0" max="59" step="1" id="preheat_sec" oninput="syncTimeFields('preheat')" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="17">
+                                    <span class="absolute right-2 top-2.5 text-[10px] text-slate-500">s</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="preheat_time_s" value="137">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Desviación de Temperatura Real (Δ °C)</label>
+                            <input type="text" id="temp_deviation_c" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition font-mono" placeholder="+5 o -10">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Tiempo de Recuperación Térmica</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="relative">
+                                    <input type="number" min="0" step="1" id="recovery_min" oninput="syncTimeFields('recovery')" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="1">
+                                    <span class="absolute right-2 top-2.5 text-[10px] text-slate-500">min</span>
+                                </div>
+                                <div class="relative">
+                                    <input type="number" min="0" max="59" step="1" id="recovery_sec" oninput="syncTimeFields('recovery')" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="28">
+                                    <span class="absolute right-2 top-2.5 text-[10px] text-slate-500">s</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="thermal_recovery_s" value="88">
+                        </div>
+                    </div>
+
+                    <!-- Mapa Perimetral y Protección Frontal unificados en caliente -->
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400">Mapa Perimetral de Aislamiento, Seguridad y Ergonomía Térmica (°C)</h3>
+                            <span class="text-[10px] font-mono text-slate-500">Medición Directa en Caliente</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Asa de Agarre (°C)</label>
+                                <input type="number" step="0.5" id="temp_handle_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="26.9">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Protección Frontal (°C)</label>
+                                <input type="number" step="0.5" id="thermal_protection_front" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="49.0">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Laterales [Izq/Der] (°C)</label>
+                                <input type="number" step="0.5" id="temp_side_walls_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="46.3">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Tapa Superior (°C)</label>
+                                <input type="number" step="0.5" id="temp_top_cover_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="46.0">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Escape Trasero (°C)</label>
+                                <input type="number" step="0.5" id="temp_rear_exhaust_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="65.0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spatial Convection Thermal Map Box -->
+                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400">Mapa Térmico de Convección (Rejilla sin alimentos a 180°C)</h3>
+                            <span class="text-[10px] font-mono text-slate-500">Sonda Térmica 5 Puntos</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Centro (°C)</label>
+                                <input type="number" step="0.5" id="thermal_map_center" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="120">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Norte - Superior (°C)</label>
+                                <input type="number" step="0.5" id="thermal_map_north" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="128">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Sur - Inferior (°C)</label>
+                                <input type="number" step="0.5" id="thermal_map_south" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="121">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Este - Derecho (°C)</label>
+                                <input type="number" step="0.5" id="thermal_map_east" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="110">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Oeste - Izquierdo (°C)</label>
+                                <input type="number" step="0.5" id="thermal_map_west" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="111">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thermal Inertia and Vapor Sealing -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Inercia Térmica a los 3 min de apagar (°C)</label>
+                            <input type="number" step="0.5" id="thermal_inertia_3min" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition font-mono" placeholder="105">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-2">Prueba Estanqueidad al Vapor (Display)</label>
+                            <select id="vapor_sealing" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
+                                <option value="excelente">Sin condensación (Excelente estanqueidad)</option>
+                                <option value="leve">Condensación leve en bordes del display</option>
+                                <option value="critica">Condensación severa / Riesgo electrónico</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- APARTADO 09: CONSUMO Y RENDIMIENTO ELÉCTRICO -->
+            <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">09</span>
                         <h2 class="text-base font-semibold text-white">Consumo y Rendimiento Eléctrico</h2>
                     </div>
                     <i data-lucide="zap" class="w-5 h-5 text-slate-500"></i>
@@ -676,11 +825,11 @@
                 </div>
             </section>
 
-            <!-- APARTADO 09 -->
+            <!-- APARTADO 10: ENSAYOS ACÚSTICOS -->
             <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
                 <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
                     <div class="flex items-center gap-3">
-                        <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">09</span>
+                        <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">10</span>
                         <h2 class="text-base font-semibold text-white">Ensayos Acústicos</h2>
                     </div>
                     <i data-lucide="volume-2" class="w-5 h-5 text-slate-500"></i>
@@ -688,106 +837,6 @@
                 <div class="p-6">
                     <label class="block text-xs font-medium text-slate-400 mb-2">Nivel de Ruido Operativo (dBA) <span class="text-slate-500">(A 1 metro a máxima potencia)</span></label>
                     <input type="number" step="0.5" id="noise_dba" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="54.5">
-                </div>
-            </section>
-
-            <!-- APARTADO 10: ENSAYOS TÉRMICOS Y CONVECCIÓN -->
-            <section class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-                <div class="bg-slate-850 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <span class="px-2.5 py-1 bg-brand-500/10 text-brand-400 border border-brand-500/20 rounded-md font-mono text-xs font-bold">10</span>
-                        <h2 class="text-base font-semibold text-white">Ensayos Térmicos y Convección</h2>
-                    </div>
-                    <i data-lucide="thermometer" class="w-5 h-5 text-slate-500"></i>
-                </div>
-                <div class="p-6 space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-800">
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Tiempo de Precalentamiento a 180°C (s)</label>
-                            <input type="number" step="1" id="preheat_time_s" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="180">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Desviación de Temperatura Real (Δ °C)</label>
-                            <input type="text" id="temp_deviation_c" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="+5 o -10">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Tiempo de Recuperación Térmica (s) <span class="text-slate-500">(Tras remover alimentos)</span></label>
-                            <input type="number" step="1" id="thermal_recovery_s" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="35">
-                        </div>
-                    </div>
-
-                    <!-- Perímetro y Ergonomía Térmica Ampliada -->
-                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400">Mapa Perimetral de Aislamiento y Ergonomía Térmica (°C)</h3>
-                            <span class="text-[10px] font-mono text-slate-500">Control de Seguridad de Contacto</span>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Asa de Agarre (°C)</label>
-                                <input type="number" step="0.5" id="temp_handle_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="32.5">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Lateral Izquierdo/Derecho (°C)</label>
-                                <input type="number" step="0.5" id="temp_side_walls_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="48.0">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Tapa Superior (°C)</label>
-                                <input type="number" step="0.5" id="temp_top_cover_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="52.0">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Escape Trasero (°C)</label>
-                                <input type="number" step="0.5" id="temp_rear_exhaust_c" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="68.5">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Spatial Convection Thermal Map Box -->
-                    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-400">Mapa Térmico de Convección (Rejilla sin alimentos a 180°C)</h3>
-                            <span class="text-[10px] font-mono text-slate-500">Sonda Térmica 5 Puntos</span>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Centro (°C)</label>
-                                <input type="number" step="0.5" id="thermal_map_center" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="180">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Norte - Superior (°C)</label>
-                                <input type="number" step="0.5" id="thermal_map_north" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="175">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Sur - Inferior (°C)</label>
-                                <input type="number" step="0.5" id="thermal_map_south" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="172">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Este - Derecho (°C)</label>
-                                <input type="number" step="0.5" id="thermal_map_east" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="178">
-                            </div>
-                            <div>
-                                <label class="block text-[11px] font-semibold text-slate-400 mb-1.5">Oeste - Izquierdo (°C)</label>
-                                <input type="number" step="0.5" id="thermal_map_west" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand-500 font-mono text-center" placeholder="176">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Thermal Inertia and Vapor Sealing -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Inercia Térmica a los 3 min de apagar (°C)</label>
-                            <input type="number" step="0.5" id="thermal_inertia_3min" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition" placeholder="110">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-medium text-slate-400 mb-2">Prueba Estanqueidad al Vapor (Display)</label>
-                            <select id="vapor_sealing" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-brand-500 transition">
-                                <option value="excelente">Sin condensación (Excelente estanqueidad)</option>
-                                <option value="leve">Condensación leve en bordes del display</option>
-                                <option value="critica">Condensación severa / Riesgo electrónico</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -829,7 +878,7 @@
     <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p>HOUSE TOOLS AUDITOR &copy; 2026 - Laboratorio de Metrología y Ensayos de Eficiencia</p>
-            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.3.2 LAB</p>
+            <p class="font-mono text-slate-400">Air Fryer Audit Protocol v2.3.5 LAB</p>
         </div>
     </footer>
 
@@ -843,7 +892,7 @@
         }
 
         // Local Storage Key
-        const STORAGE_KEY = 'AIR_FRYER_AUDIT_DATA_V2.3.2';
+        const STORAGE_KEY = 'AIR_FRYER_AUDIT_DATA_V2.3.5';
 
         // Auto calculate surface cm² from width and length
         function autoCalcSurface() {
@@ -871,6 +920,15 @@
             if (totalGrams > 0) {
                 document.getElementById('weight_total').value = totalGrams;
             }
+        }
+
+        // Sync Min/Sec fields to total seconds
+        function syncTimeFields(type) {
+            const min = parseInt(document.getElementById(`${type}_min`).value) || 0;
+            const sec = parseInt(document.getElementById(`${type}_sec`).value) || 0;
+            const totalSec = (min * 60) + sec;
+            document.getElementById(`${type}_time_s`).value = totalSec;
+            calculateAll();
         }
 
         // Evaluate Coating Thickness Alert for Rack
@@ -1046,8 +1104,12 @@
             if (document.getElementById('aerodynamics_bottom').value === 'estrella_helicoidal') score += 0.6;
             if (document.getElementById('rack_geo_design').value === 'ranuras_relieve') score += 0.5;
             if (document.getElementById('substratum_type').value === 'ferroso_acero') score += 0.4;
-            if (document.getElementById('external_materials_check').value === 'inox_real') score += 0.6;
-            if (document.getElementById('external_materials_check').value === 'plastico_pintado') score -= 1.0;
+            
+            const matCheck = document.getElementById('external_materials_check').value;
+            if (matCheck === 'inox_real') score += 0.6;
+            if (matCheck === 'mixta_inox') score += 0.4;
+            if (matCheck === 'mixta_chapa_ferritica') score += 0.1;
+            if (matCheck === 'plastico_pintado') score -= 1.0;
 
             if (document.getElementById('extraction_force').value === 'suave_firme') score += 0.6;
             if (document.getElementById('extraction_force').value === 'excesivo_atascamiento') score -= 1.2;
@@ -1136,7 +1198,7 @@
             let csvContent = "data:text/csv;charset=utf-8,Parametro,Valor\n";
 
             inputs.forEach(input => {
-                if (input.id) {
+                if (input.id && input.type !== 'hidden') {
                     const labelEl = input.previousElementSibling;
                     const label = labelEl ? labelEl.innerText.replace(/,/g, ' ') : input.id;
                     const val = (input.value || '').replace(/,/g, ' ').replace(/\n/g, ' ');
@@ -1166,7 +1228,7 @@
             const weight = document.getElementById('weight_total').value || '0';
             const score = document.getElementById('score-display').innerText;
 
-            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER v2.3.2 ---
+            const summaryText = `--- HOUSE TOOLS AUDITOR: AIR FRYER v2.3.5 ---
 Marca/Modelo: ${brand} ${model}
 Volumen Teórico: ${volTheo} L
 Superficie Útil: ${surface} cm² | Peso Total: ${weight} g
